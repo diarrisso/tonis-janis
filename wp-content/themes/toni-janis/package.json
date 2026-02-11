@@ -1,0 +1,39 @@
+{
+  "name": "toni-janis",
+  "version": "1.0.0",
+  "description": "WordPress theme for Toni Janis Garten- und Landschaftsbau",
+  "private": true,
+  "scripts": {
+    "dev": "npm run watch",
+    "dev:sync": "concurrently \"npm run watch:sass\" \"npm run watch:css\" \"npm run watch:js\" \"npm run watch:sync\"",
+    "watch": "concurrently \"npm run watch:sass\" \"npm run watch:css\" \"npm run watch:js\"",
+    "watch:sass": "sass --watch assets/src/scss/main.scss:assets/src/scss/compiled/styles.css",
+    "watch:css": "npx tailwindcss -i ./assets/src/css/main.css -o ./assets/dist/main.css --watch",
+    "watch:js": "esbuild assets/src/js/main.js --bundle --outfile=assets/dist/main.js --watch",
+    "watch:sync": "browser-sync start --proxy 'localhost:8027' --files '**/*.php, assets/dist/*.css, assets/dist/*.js, assets/src/scss/compiled/*.css' --no-open",
+    "build": "npm run build:sass && npm run build:css && npm run build:js",
+    "build:sass": "sass assets/src/scss/main.scss:assets/src/scss/compiled/styles.css --style=compressed --no-source-map",
+    "build:css": "npx tailwindcss -i ./assets/src/css/main.css -o ./assets/dist/main.css --minify",
+    "build:js": "esbuild assets/src/js/main.js --bundle --minify --outfile=assets/dist/main.js",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "eslint 'assets/src/js/**/*.js' --fix",
+    "lint:css": "stylelint 'assets/src/scss/**/*.scss' --fix",
+    "format": "prettier --write 'assets/src/**/*.{js,scss,css}'"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "browser-sync": "^3.0.2",
+    "concurrently": "^8.2.2",
+    "esbuild": "^0.20.0",
+    "eslint": "^8.56.0",
+    "postcss": "^8.4.35",
+    "prettier": "^3.2.5",
+    "sass": "^1.70.0",
+    "stylelint": "^16.2.0",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "swiper": "^12.1.0"
+  }
+}

@@ -1,0 +1,65 @@
+// ==========================================================================
+// Base Styles
+// ==========================================================================
+@use 'variables' as *;
+@use 'mixins' as *;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+// Selection highlight
+::selection {
+    background-color: rgba($kiwi-green, 0.2);
+    color: $earth-brown;
+}
+
+// Focus visible
+:focus-visible {
+    outline: 2px solid $kiwi-green;
+    outline-offset: 2px;
+}
+
+// Smooth scrolling
+html {
+    scroll-behavior: smooth;
+}
+
+// Base typography
+body {
+    font-family: $font-body;
+    color: $charcoal;
+    background-color: $cream;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-heading;
+    color: $earth-brown;
+}
+
+// Links
+a {
+    color: $kiwi-dark;
+    text-decoration: none;
+    @include transition(color);
+
+    @include hover {
+        color: $kiwi-green;
+    }
+}
+
+// Images
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+// Alpine.js cloak
+[x-cloak] {
+    display: none !important;
+}

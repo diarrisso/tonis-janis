@@ -1,0 +1,5605 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toni Janis - Garten- und Landschaftsbau | Delmenhorst</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Palette Vert Kiwi Moderne */
+            --kiwi-green: #8BC34A;
+            --kiwi-dark: #689F38;
+            --kiwi-light: #AED581;
+            --kiwi-accent: #9CCC65;
+            --earth-brown: #5D4037;
+            --sand-beige: #E8E0D5;
+            --cream: #FAF8F5;
+            --white: #FFFFFF;
+            --charcoal: #2D2D2D;
+
+            /* Alias pour compatibilité */
+            --forest-green: var(--kiwi-dark);
+            --leaf-green: var(--kiwi-green);
+            --lime-accent: var(--kiwi-accent);
+
+            /* Gradients Kiwi */
+            --gradient-nature: linear-gradient(135deg, var(--kiwi-dark) 0%, var(--kiwi-green) 100%);
+            --gradient-earth: linear-gradient(180deg, var(--sand-beige) 0%, var(--cream) 100%);
+
+            /* Typography */
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, sans-serif;
+
+            /* Spacing */
+            --section-padding: clamp(4rem, 10vw, 8rem);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Decorative Elements */
+        .leaf-decoration {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 C20 20, 10 50, 50 95 C90 50, 80 20, 50 5' fill='%234A7C59' opacity='0.15'/%3E%3C/svg%3E") no-repeat center;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(46, 90, 60, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-nature);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 40'%3E%3Cpath d='M15 0 C5 10, 0 20, 15 40 C30 20, 25 10, 15 0' fill='white'/%3E%3C/svg%3E") no-repeat center;
+            background-size: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text strong {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--forest-green);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            color: var(--earth-brown);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--lime-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--forest-green);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gradient-nature);
+            color: white !important;
+            padding: 0.8rem 1.5rem !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(46, 90, 60, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: calc(var(--section-padding) + 80px) 2rem var(--section-padding);
+            background: var(--gradient-earth);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cpath d='M400 50 C200 100, 100 250, 400 550 C700 250, 600 100, 400 50' fill='%234A7C59' opacity='0.08'/%3E%3Cpath d='M500 100 C350 150, 280 280, 500 500 C720 280, 650 150, 500 100' fill='%232E5A3C' opacity='0.05'/%3E%3C/svg%3E") no-repeat right center;
+            background-size: cover;
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(46, 90, 60, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--forest-green);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge::before {
+            content: '🌿';
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--forest-green);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--lime-accent);
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--earth-brown);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-nature);
+            color: white;
+            box-shadow: 0 4px 20px rgba(46, 90, 60, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(46, 90, 60, 0.35);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--forest-green);
+            border: 2px solid var(--forest-green);
+        }
+
+        .btn-secondary:hover {
+            background: var(--forest-green);
+            color: white;
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-image-main {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(145deg, var(--leaf-green), var(--forest-green));
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(46, 90, 60, 0.2);
+        }
+
+        .hero-image-main::before {
+            content: '🏡 Ihr Traumgarten';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        .hero-floating-card {
+            position: absolute;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-floating-card.card-1 {
+            bottom: 40px;
+            left: -40px;
+        }
+
+        .hero-floating-card.card-2 {
+            top: 40px;
+            right: -30px;
+            animation-delay: -3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .floating-stat {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .floating-stat-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-nature);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .floating-stat-text strong {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--forest-green);
+        }
+
+        .floating-stat-text span {
+            font-size: 0.85rem;
+            color: var(--earth-brown);
+        }
+
+        /* Services Section */
+        .services {
+            padding: var(--section-padding) 2rem;
+            background: white;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--lime-accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--earth-brown);
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--cream);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(46, 90, 60, 0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-nature);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(46, 90, 60, 0.12);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-nature);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--earth-brown);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--forest-green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.3s ease;
+        }
+
+        .service-link:hover {
+            gap: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: var(--section-padding) 2rem;
+            background: var(--gradient-earth);
+            position: relative;
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image-main {
+            width: 100%;
+            height: 600px;
+            background: var(--gradient-nature);
+            border-radius: 30px;
+            position: relative;
+        }
+
+        .about-image-main::before {
+            content: '👨‍🌾 Toni Janis';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 150px;
+            height: 150px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-badge strong {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--forest-green);
+            line-height: 1;
+        }
+
+        .experience-badge span {
+            font-size: 0.85rem;
+            color: var(--earth-brown);
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--forest-green);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .about-content p {
+            color: var(--earth-brown);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .about-feature-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(46, 90, 60, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+
+        .about-feature span {
+            font-weight: 600;
+            color: var(--forest-green);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: var(--section-padding) 2rem;
+            background: white;
+        }
+
+        .gallery-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            background: var(--gradient-nature);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item::before {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: var(--section-padding) 2rem;
+            background: var(--forest-green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .testimonials .section-header h2,
+        .testimonials .section-header p,
+        .testimonials .section-label {
+            color: white;
+        }
+
+        .testimonials .section-label {
+            opacity: 0.8;
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .testimonial-stars {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p {
+            color: white;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--lime-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+        }
+
+        .testimonial-author-info strong {
+            display: block;
+            color: white;
+        }
+
+        .testimonial-author-info span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: var(--section-padding) 2rem;
+            background: var(--cream);
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+        }
+
+        .contact-info h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--forest-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info > p {
+            color: var(--earth-brown);
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-item-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-nature);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item-text strong {
+            display: block;
+            color: var(--forest-green);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item-text span,
+        .contact-item-text a {
+            color: var(--earth-brown);
+            text-decoration: none;
+        }
+
+        .contact-item-text a:hover {
+            color: var(--forest-green);
+        }
+
+        .contact-form-wrapper {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(46, 90, 60, 0.08);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--forest-green);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--sand-beige);
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: var(--cream);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--leaf-green);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 1rem 0;
+            max-width: 300px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--lime-accent);
+        }
+
+        .footer-column h4 {
+            font-family: var(--font-display);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--lime-accent);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            color: white;
+        }
+
+        /* Appointment Section */
+        .appointment {
+            padding: var(--section-padding) 2rem;
+            background: var(--forest-green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .appointment::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .appointment-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .appointment-info {
+            color: white;
+        }
+
+        .appointment-info .section-label {
+            color: var(--lime-accent);
+        }
+
+        .appointment-info h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .appointment-info > p {
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .appointment-benefits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .benefit-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--lime-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .benefit-item span {
+            font-weight: 500;
+        }
+
+        .calendar-wrapper {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-header h3 {
+            font-family: var(--font-display);
+            color: var(--forest-green);
+            font-size: 1.3rem;
+        }
+
+        .cal-nav {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--sand-beige);
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--forest-green);
+            transition: all 0.3s ease;
+        }
+
+        .cal-nav:hover {
+            background: var(--forest-green);
+            color: white;
+            border-color: var(--forest-green);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .cal-day-header {
+            text-align: center;
+            font-weight: 600;
+            color: var(--earth-brown);
+            font-size: 0.85rem;
+            padding: 10px 0;
+        }
+
+        .cal-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            background: var(--cream);
+            color: var(--charcoal);
+        }
+
+        .cal-day:hover:not(.disabled):not(.empty) {
+            background: var(--leaf-green);
+            color: white;
+        }
+
+        .cal-day.selected {
+            background: var(--forest-green);
+            color: white;
+        }
+
+        .cal-day.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .cal-day.empty {
+            background: transparent;
+            cursor: default;
+        }
+
+        .cal-day.today {
+            border: 2px solid var(--lime-accent);
+        }
+
+        .time-slots {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--sand-beige);
+        }
+
+        .time-slots h4 {
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .time-slot {
+            padding: 12px;
+            border: 2px solid var(--sand-beige);
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--forest-green);
+            transition: all 0.2s ease;
+        }
+
+        .time-slot:hover {
+            border-color: var(--forest-green);
+            background: var(--cream);
+        }
+
+        .time-slot.selected {
+            background: var(--forest-green);
+            color: white;
+            border-color: var(--forest-green);
+        }
+
+        .booking-summary {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: var(--cream);
+            border-radius: 12px;
+        }
+
+        .summary-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .summary-content span {
+            font-weight: 600;
+            color: var(--forest-green);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: var(--section-padding) 2rem;
+            background: linear-gradient(180deg, var(--cream) 0%, white 100%);
+        }
+
+        .quote-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .quote-progress {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-number {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--sand-beige);
+            color: var(--earth-brown);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active .step-number {
+            background: var(--forest-green);
+            color: white;
+        }
+
+        .progress-step.completed .step-number {
+            background: var(--lime-accent);
+            color: white;
+        }
+
+        .progress-step span {
+            font-size: 0.85rem;
+            color: var(--earth-brown);
+            font-weight: 500;
+        }
+
+        .progress-line {
+            width: 80px;
+            height: 3px;
+            background: var(--sand-beige);
+            margin: 0 15px;
+            margin-bottom: 25px;
+        }
+
+        .quote-step {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .quote-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .quote-step h3 {
+            font-family: var(--font-display);
+            color: var(--forest-green);
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .service-selection {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-option input {
+            display: none;
+        }
+
+        .option-card {
+            background: white;
+            border: 2px solid var(--sand-beige);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .service-option input:checked + .option-card {
+            border-color: var(--forest-green);
+            background: rgba(46, 90, 60, 0.05);
+            box-shadow: 0 8px 25px rgba(46, 90, 60, 0.15);
+        }
+
+        .option-card:hover {
+            border-color: var(--leaf-green);
+            transform: translateY(-3px);
+        }
+
+        .option-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        .option-title {
+            font-weight: 600;
+            color: var(--forest-green);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .option-desc {
+            font-size: 0.8rem;
+            color: var(--earth-brown);
+        }
+
+        .details-form {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .file-upload {
+            position: relative;
+        }
+
+        .file-upload input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .upload-placeholder {
+            border: 2px dashed var(--sand-beige);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            background: var(--cream);
+            transition: all 0.3s ease;
+        }
+
+        .file-upload:hover .upload-placeholder {
+            border-color: var(--leaf-green);
+            background: white;
+        }
+
+        .upload-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-hint {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--earth-brown);
+            margin-top: 0.5rem;
+        }
+
+        .quote-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .quote-next {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .checkbox-label input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--forest-green);
+        }
+
+        .checkbox-label a {
+            color: var(--forest-green);
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--lime-accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .success-message h3 {
+            margin-bottom: 1rem;
+        }
+
+        .success-message p {
+            color: var(--earth-brown);
+            margin-bottom: 2rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .hero-container,
+            .about-container,
+            .contact-container,
+            .appointment-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+
+            .gallery-item.large {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-image-main {
+                height: 350px;
+            }
+
+            .hero-floating-card {
+                display: none;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .service-selection {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .slots-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .appointment-benefits {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-selection {
+                grid-template-columns: 1fr;
+            }
+
+            .before-after-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ba-comparison {
+                height: 300px;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .image-preview-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+
+        /* Before/After Section */
+        .before-after {
+            padding: var(--section-padding) 2rem;
+            background: var(--cream);
+        }
+
+        .before-after-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .ba-item {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .ba-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .ba-comparison {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            cursor: ew-resize;
+            user-select: none;
+        }
+
+        .ba-before, .ba-after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .ba-before {
+            z-index: 1;
+        }
+
+        .ba-after {
+            z-index: 2;
+            clip-path: inset(0 50% 0 0);
+        }
+
+        .ba-slider {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: white;
+            z-index: 3;
+            cursor: ew-resize;
+            transform: translateX(-50%);
+        }
+
+        .ba-slider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .ba-slider::after {
+            content: '⇔';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            color: var(--forest-green);
+            z-index: 1;
+        }
+
+        .ba-labels {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .ba-label {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .ba-info {
+            padding: 2rem;
+        }
+
+        .ba-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--forest-green);
+            margin-bottom: 0.75rem;
+        }
+
+        .ba-info p {
+            color: var(--earth-brown);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .ba-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .ba-tag {
+            background: rgba(46, 90, 60, 0.1);
+            color: var(--forest-green);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* YouTube Section */
+        .youtube-section {
+            padding: var(--section-padding) 2rem;
+            background: white;
+        }
+
+        .videos-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: var(--cream);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: var(--gradient-nature);
+            overflow: hidden;
+        }
+
+        .video-thumbnail iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            pointer-events: none;
+        }
+
+        .video-card:hover .video-play-overlay {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .play-button {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .play-button {
+            transform: scale(1.1);
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid var(--forest-green);
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 5px;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--forest-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-info p {
+            color: var(--earth-brown);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Enhanced Upload Section */
+        .upload-area {
+            border: 3px dashed var(--sand-beige);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--cream);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .upload-area.drag-over {
+            border-color: var(--lime-accent);
+            background: rgba(124, 179, 66, 0.05);
+        }
+
+        .upload-input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .upload-icon-large {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .upload-text {
+            font-size: 1.1rem;
+            color: var(--forest-green);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-subtext {
+            font-size: 0.9rem;
+            color: var(--earth-brown);
+            margin-bottom: 1rem;
+        }
+
+        .upload-formats {
+            font-size: 0.8rem;
+            color: var(--earth-brown);
+            opacity: 0.7;
+        }
+
+        .image-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .preview-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--sand-beige);
+            border: 2px solid var(--sand-beige);
+            transition: border-color 0.3s ease;
+        }
+
+        .preview-item:hover {
+            border-color: var(--leaf-green);
+        }
+
+        .preview-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .preview-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 28px;
+            height: 28px;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            line-height: 1;
+            transition: background 0.3s ease;
+        }
+
+        .preview-remove:hover {
+            background: rgba(255, 0, 0, 1);
+        }
+
+        .preview-filename {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .upload-count {
+            display: inline-block;
+            background: var(--lime-accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .preview-item {
+            animation: slideIn 0.3s ease;
+        }
+
+        /* Passion Section */
+        .passion {
+            padding: var(--section-padding) 2rem;
+            background: var(--gradient-earth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .passion-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .passion-content h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--forest-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .passion-quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--forest-green);
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            border-left: 4px solid var(--lime-accent);
+        }
+
+        .passion-text {
+            color: var(--earth-brown);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .passion-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--forest-green);
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--earth-brown);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Process Section */
+        .process {
+            padding: var(--section-padding) 2rem;
+            background: white;
+        }
+
+        .process-steps {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: var(--sand-beige);
+            z-index: 0;
+        }
+
+        .step {
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number-circle {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border: 4px solid var(--forest-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(46, 90, 60, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover .step-number-circle {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(46, 90, 60, 0.25);
+        }
+
+        .step-number-circle .step-icon {
+            font-size: 2.5rem;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 40px;
+            height: 40px;
+            background: var(--lime-accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .step h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--forest-green);
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
+
+        .step p {
+            color: var(--earth-brown);
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Quality/Certifications Section */
+        .quality {
+            padding: var(--section-padding) 2rem;
+            background: var(--forest-green);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quality::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+        }
+
+        .quality .section-header h2,
+        .quality .section-header p,
+        .quality .section-label {
+            color: white;
+        }
+
+        .quality-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .quality-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .quality-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .quality-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .quality-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .quality-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Equipment Section */
+        .equipment {
+            padding: var(--section-padding) 2rem;
+            background: var(--cream);
+        }
+
+        .equipment-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .equipment-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .equipment-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .equipment-image {
+            width: 100%;
+            height: 250px;
+            background: var(--gradient-nature);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .equipment-content {
+            padding: 2rem;
+        }
+
+        .equipment-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--forest-green);
+            margin-bottom: 0.75rem;
+        }
+
+        .equipment-content p {
+            color: var(--earth-brown);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .equipment-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .spec-badge {
+            background: rgba(46, 90, 60, 0.1);
+            color: var(--forest-green);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Blog/Tips Section */
+        .blog-tips {
+            padding: var(--section-padding) 2rem;
+            background: white;
+        }
+
+        .blog-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--cream);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 250px;
+            background: var(--gradient-nature);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .blog-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--lime-accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--earth-brown);
+        }
+
+        .blog-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--forest-green);
+            margin-bottom: 0.75rem;
+        }
+
+        .blog-content p {
+            color: var(--earth-brown);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--forest-green);
+            font-weight: 600;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        /* Entsorgen Section */
+        .entsorgen-section {
+            padding: var(--section-padding) 2rem;
+            background: var(--cream);
+        }
+
+        .entsorgen-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .entsorgen-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--forest-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .entsorgen-list {
+            list-style: none;
+            margin-bottom: 3rem;
+        }
+
+        .entsorgen-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--earth-brown);
+            font-size: 1.05rem;
+        }
+
+        .entsorgen-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--lime-accent);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .entsorgen-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .benefit-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-box h4 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--forest-green);
+            margin-bottom: 0.25rem;
+        }
+
+        .benefit-box p {
+            color: var(--earth-brown);
+            font-size: 0.9rem;
+        }
+
+        .entsorgen-form-wrapper {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(46, 90, 60, 0.08);
+        }
+
+        .entsorgen-form h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--forest-green);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .quality-requirements {
+            background: rgba(124, 179, 66, 0.1);
+            border-left: 4px solid var(--lime-accent);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .quality-requirements p {
+            color: var(--forest-green);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .quality-requirements ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .quality-requirements li {
+            color: var(--earth-brown);
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .quality-requirements li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--lime-accent);
+        }
+
+        .quality-warning {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            color: #856404;
+        }
+
+        .quality-warning.error {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+
+        .quality-warning.success {
+            background: #d4edda;
+            border-left-color: #28a745;
+            color: #155724;
+        }
+
+        /* Slider Components */
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .slider-btn {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 2px solid var(--kiwi-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            color: var(--kiwi-green);
+        }
+
+        .slider-btn:hover {
+            background: var(--kiwi-green);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .slider-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slider-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--sand-beige);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: var(--kiwi-green);
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        .slider-dot:hover {
+            background: var(--kiwi-accent);
+        }
+
+        /* Gallery Slider Specific */
+        .gallery-slider {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .gallery-slide-item {
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+            background: var(--gradient-nature);
+        }
+
+        .gallery-slide-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-slide-item::before {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+
+        .gallery-slide-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+        }
+
+        /* Testimonials Slider Specific */
+        .testimonials-slider {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonials-slide {
+            min-width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* Before/After Slider Navigation */
+        .ba-slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .ba-nav-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid var(--kiwi-green);
+            border-radius: 30px;
+            color: var(--kiwi-green);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .ba-nav-btn:hover,
+        .ba-nav-btn.active {
+            background: var(--kiwi-green);
+            color: white;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: var(--section-padding) 2rem;
+            background: white;
+        }
+
+        .projects-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid var(--sand-beige);
+            border-radius: 30px;
+            color: var(--earth-brown);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--kiwi-green);
+            border-color: var(--kiwi-green);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .projects-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--cream);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card.hidden {
+            display: none;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 280px;
+            background: var(--gradient-nature);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(139, 195, 74, 0.95);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-category {
+            color: var(--kiwi-green);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--forest-green);
+            margin-bottom: 0.75rem;
+        }
+
+        .project-content p {
+            color: var(--earth-brown);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--earth-brown);
+        }
+
+        .project-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            background: rgba(139, 195, 74, 0.1);
+            color: var(--kiwi-green);
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: var(--section-padding) 2rem;
+            background: var(--cream);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(139, 195, 74, 0.05);
+        }
+
+        .faq-question h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            color: var(--forest-green);
+            margin: 0;
+            flex: 1;
+            padding-right: 1rem;
+        }
+
+        .faq-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--kiwi-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            background: var(--kiwi-dark);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 2rem 1.5rem 2rem;
+        }
+
+        .faq-answer p {
+            color: var(--earth-brown);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-answer ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .faq-answer li {
+            color: var(--earth-brown);
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Service Detail Modal */
+        .service-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .service-modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .service-modal-content {
+            background: white;
+            border-radius: 30px;
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            margin: 2rem auto;
+            animation: modalSlideIn 0.4s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: white;
+            border: 2px solid var(--kiwi-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--kiwi-green);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .service-modal-close:hover {
+            background: var(--kiwi-green);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .service-detail-header {
+            background: var(--gradient-nature);
+            color: white;
+            padding: 4rem 3rem 3rem;
+            border-radius: 30px 30px 0 0;
+            position: relative;
+        }
+
+        .service-detail-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-detail-header h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-detail-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 700px;
+        }
+
+        .service-detail-body {
+            padding: 3rem;
+        }
+
+        .service-detail-section {
+            margin-bottom: 3rem;
+        }
+
+        .service-detail-section h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--kiwi-dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .service-features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--cream);
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-feature-item:hover {
+            transform: translateX(5px);
+        }
+
+        .service-feature-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .service-feature-content h4 {
+            font-size: 1.1rem;
+            color: var(--kiwi-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-feature-content p {
+            color: var(--earth-brown);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .service-pricing {
+            background: rgba(139, 195, 74, 0.1);
+            border-left: 4px solid var(--kiwi-green);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .service-pricing h4 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--kiwi-dark);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .pricing-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .pricing-label {
+            font-size: 0.9rem;
+            color: var(--earth-brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-value {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--kiwi-dark);
+            font-weight: 700;
+        }
+
+        .service-quote-form {
+            background: var(--cream);
+            padding: 3rem;
+            border-radius: 20px;
+        }
+
+        .service-quote-form h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--kiwi-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Responsive Updates */
+        @media (max-width: 1024px) {
+            .passion-container {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .entsorgen-container {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+
+            .service-features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .passion-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .entsorgen-form-wrapper {
+                padding: 2rem 1.5rem;
+            }
+
+            .gallery-slide {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-slide {
+                grid-template-columns: 1fr;
+            }
+
+            .slider-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-icon"></div>
+            <div class="logo-text">
+                <strong>Toni Janis</strong>
+                <span>Garten- und Landschaftsbau</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home">Startseite</a></li>
+            <li><a href="#services">Leistungen</a></li>
+            <li><a href="#before-after">Vorher/Nachher</a></li>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#termin">Terminbuchung</a></li>
+            <li><a href="#angebot">Angebot</a></li>
+            <li><a href="#testimonials">Referenzen</a></li>
+            <li><a href="#contact" class="nav-cta">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-badge">Ihr Gartenspezialist in Delmenhorst</div>
+            <h1>Wir verwandeln Ihren Garten in eine <span>grüne Oase</span></h1>
+            <p>Professioneller Garten- und Landschaftsbau mit Leidenschaft. Von der Planung bis zur Pflege – wir schaffen Ihren Traumgarten.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">
+                    Kostenlose Beratung
+                    <span>→</span>
+                </a>
+                <a href="#services" class="btn btn-secondary">
+                    Unsere Leistungen
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-image-main"></div>
+            <div class="hero-floating-card card-1">
+                <div class="floating-stat">
+                    <div class="floating-stat-icon">✓</div>
+                    <div class="floating-stat-text">
+                        <strong>100%</strong>
+                        <span>Zufriedenheit</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-floating-card card-2">
+                <div class="floating-stat">
+                    <div class="floating-stat-icon">🌱</div>
+                    <div class="floating-stat-text">
+                        <strong>500+</strong>
+                        <span>Projekte</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services">
+    <div class="section-header">
+        <span class="section-label">Unsere Leistungen</span>
+        <h2>Kompletter Service für Ihren Garten</h2>
+        <p>Von der ersten Idee bis zur dauerhaften Pflege – wir bieten alle Leistungen aus einer Hand.</p>
+    </div>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">🌳</div>
+            <h3>Gartengestaltung</h3>
+            <p>Kreative Planung und professionelle Umsetzung Ihrer Gartenträume. Wir gestalten individuelle Grünanlagen.</p>
+            <a href="#" class="service-link" data-service="gartengestaltung">Mehr erfahren <span>→</span></a>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🌿</div>
+            <h3>Gartenpflege</h3>
+            <p>Regelmäßige Pflege und Instandhaltung Ihres Gartens. Auch als praktisches Abo verfügbar.</p>
+            <a href="#" class="service-link" data-service="gartenpflege">Mehr erfahren <span>→</span></a>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🧱</div>
+            <h3>Pflasterarbeiten</h3>
+            <p>Terrassen, Wege und Einfahrten – professionell gepflastert mit hochwertigen Materialien.</p>
+            <a href="#" class="service-link" data-service="pflasterung">Mehr erfahren <span>→</span></a>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🚜</div>
+            <h3>Rollrasen verlegen</h3>
+            <p>Schnell zum perfekten Rasen. Wir verlegen Rollrasen fachgerecht für ein sofort grünes Ergebnis.</p>
+            <a href="#" class="service-link" data-service="rollrasen">Mehr erfahren <span>→</span></a>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🏠</div>
+            <h3>Zaunbau & Sichtschutz</h3>
+            <p>Hochwertige Zäune und Sichtschutzelemente für mehr Privatsphäre in Ihrem Garten.</p>
+            <a href="#" class="service-link" data-service="zaunbau">Mehr erfahren <span>→</span></a>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">❄️</div>
+            <h3>Winterdienst</h3>
+            <p>Zuverlässiger Winterdienst für sichere Wege und Einfahrten in der kalten Jahreszeit.</p>
+            <a href="#" class="service-link" data-service="winterdienst">Mehr erfahren <span>→</span></a>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">♻️</div>
+            <h3>Entsorgungsservice</h3>
+            <p>Professionelle Entsorgung aller Art: Sperrmüll, Möbel, Elektrogeräte, Bau- und Gartenabfälle. Fachgerecht und umweltfreundlich.</p>
+            <a href="#entsorgen" class="service-link">Mehr erfahren <span>→</span></a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about" id="about">
+    <div class="about-container">
+        <div class="about-image">
+            <div class="about-image-main"></div>
+            <div class="experience-badge">
+                <strong>10+</strong>
+                <span>Jahre<br>Erfahrung</span>
+            </div>
+        </div>
+        <div class="about-content">
+            <span class="section-label">Über uns</span>
+            <h2>Ihr Partner für professionelle Gartengestaltung in Delmenhorst</h2>
+            <p>Toni Janis Garten- und Landschaftsbau steht für Qualität, Zuverlässigkeit und Leidenschaft. Mit über 10 Jahren Erfahrung verwandeln wir Ihre Gartenträume in Wirklichkeit.</p>
+            <p>Wir bieten alles rund ums Haus – von der kompletten Neugestaltung bis zur regelmäßigen Pflege. Dabei legen wir besonderen Wert auf individuelle Beratung und hochwertige Ausführung.</p>
+            <div class="about-features">
+                <div class="about-feature">
+                    <div class="about-feature-icon">✓</div>
+                    <span>Kostenlose Beratung</span>
+                </div>
+                <div class="about-feature">
+                    <div class="about-feature-icon">✓</div>
+                    <span>Faire Preise</span>
+                </div>
+                <div class="about-feature">
+                    <div class="about-feature-icon">✓</div>
+                    <span>Termingerecht</span>
+                </div>
+                <div class="about-feature">
+                    <div class="about-feature-icon">✓</div>
+                    <span>Qualitätsarbeit</span>
+                </div>
+            </div>
+            <a href="#contact" class="btn btn-primary">Jetzt kontaktieren</a>
+        </div>
+    </div>
+</section>
+
+<!-- Passion Section -->
+<section class="passion" id="passion">
+    <div class="passion-container">
+        <div class="passion-content">
+            <span class="section-label">Meine Leidenschaft</span>
+            <h2>Gartenbau ist nicht nur mein Beruf, sondern meine Berufung</h2>
+            <p class="passion-quote">"Jeden Tag schaffe ich grüne Oasen, die Menschen glücklich machen. Das ist meine größte Motivation."</p>
+            <p class="passion-text">Seit über einem Jahrzehnt verwandle ich mit Herzblut verwilderte Flächen in gepflegte Traumgärten. Jedes Projekt ist für mich eine neue Herausforderung, bei der ich mein gesamtes Fachwissen und meine Kreativität einbringe.</p>
+            <p class="passion-text">Die Digitalisierung meines Handwerks ermöglicht es mir, noch professioneller zu arbeiten: Von der Online-Terminbuchung über digitale Angebotserstellung bis hin zur transparenten Projektkommunikation – ich nutze moderne Technologie, um Ihnen den bestmöglichen Service zu bieten.</p>
+        </div>
+        <div class="passion-stats">
+            <div class="stat-item">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Abgeschlossene Projekte</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Kundenzufriedenheit</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">10+</span>
+                <span class="stat-label">Jahre Erfahrung</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="process" id="process">
+    <div class="section-header">
+        <span class="section-label">Unser Arbeitsprozess</span>
+        <h2>So arbeiten wir – Schritt für Schritt</h2>
+        <p>Transparenz und Professionalität in jedem Projekt. Von der ersten Idee bis zur Fertigstellung.</p>
+    </div>
+    <div class="process-steps">
+        <div class="step">
+            <div class="step-number-circle">
+                <span class="step-icon">📞</span>
+                <span class="step-number">1</span>
+            </div>
+            <h3>Erstberatung</h3>
+            <p>Kostenlose Beratung vor Ort. Wir besprechen Ihre Wünsche und Vorstellungen für Ihren Garten.</p>
+        </div>
+        <div class="step">
+            <div class="step-number-circle">
+                <span class="step-icon">📐</span>
+                <span class="step-number">2</span>
+            </div>
+            <h3>Planung & Angebot</h3>
+            <p>Detaillierte Planung und transparentes Angebot. Sie erhalten einen klaren Kostenvoranschlag.</p>
+        </div>
+        <div class="step">
+            <div class="step-number-circle">
+                <span class="step-icon">🚜</span>
+                <span class="step-number">3</span>
+            </div>
+            <h3>Umsetzung</h3>
+            <p>Professionelle Durchführung mit modernster Ausstattung. Wir halten Sie stets auf dem Laufenden.</p>
+        </div>
+        <div class="step">
+            <div class="step-number-circle">
+                <span class="step-icon">✓</span>
+                <span class="step-number">4</span>
+            </div>
+            <h3>Übergabe & Service</h3>
+            <p>Finale Abnahme und Pflegehinweise. Auf Wunsch übernehmen wir auch die regelmäßige Pflege.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Quality & Certifications Section -->
+<section class="quality" id="quality">
+    <div class="section-header">
+        <span class="section-label">Qualität & Expertise</span>
+        <h2>Zertifizierte Qualität, auf die Sie sich verlassen können</h2>
+        <p>Ständige Weiterbildung und höchste Standards in allen Bereichen.</p>
+    </div>
+    <div class="quality-grid">
+        <div class="quality-card">
+            <div class="quality-icon">🎓</div>
+            <h3>Meisterqualifikation</h3>
+            <p>Zertifizierter Fachbetrieb für Garten- und Landschaftsbau mit Meisterbrief.</p>
+        </div>
+        <div class="quality-card">
+            <div class="quality-icon">🌱</div>
+            <h3>Umweltbewusstsein</h3>
+            <p>Nachhaltige Arbeitsweise mit umweltfreundlichen Materialien und Methoden.</p>
+        </div>
+        <div class="quality-card">
+            <div class="quality-icon">🛡️</div>
+            <h3>Versicherungsschutz</h3>
+            <p>Vollständig versichert für Ihre Sicherheit und unsere professionelle Arbeit.</p>
+        </div>
+        <div class="quality-card">
+            <div class="quality-icon">⚡</div>
+            <h3>Moderne Technik</h3>
+            <p>Digitale Projektplanung und -verwaltung für maximale Effizienz.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Equipment Section -->
+<section class="equipment" id="equipment">
+    <div class="section-header">
+        <span class="section-label">Professionelle Ausrüstung</span>
+        <h2>Hochwertige Geräte für perfekte Ergebnisse</h2>
+        <p>Mit modernster Technik und professionellem Equipment arbeiten wir effizient und präzise.</p>
+    </div>
+    <div class="equipment-grid">
+        <div class="equipment-card">
+            <div class="equipment-image">🚜</div>
+            <div class="equipment-content">
+                <h3>Kompaktlader & Bagger</h3>
+                <p>Für Erdarbeiten, Fundamentaushub und große Umgestaltungen setzen wir moderne Kompaktlader ein.</p>
+                <div class="equipment-specs">
+                    <span class="spec-badge">Leistungsstark</span>
+                    <span class="spec-badge">Präzise</span>
+                    <span class="spec-badge">Effizient</span>
+                </div>
+            </div>
+        </div>
+        <div class="equipment-card">
+            <div class="equipment-image">⚙️</div>
+            <div class="equipment-content">
+                <h3>Rüttelplatten & Verdichter</h3>
+                <p>Professionelle Bodenverdichtung für stabile Fundamente bei Pflasterarbeiten.</p>
+                <div class="equipment-specs">
+                    <span class="spec-badge">Verdichtung</span>
+                    <span class="spec-badge">Stabilität</span>
+                </div>
+            </div>
+        </div>
+        <div class="equipment-card">
+            <div class="equipment-image">✂️</div>
+            <div class="equipment-content">
+                <h3>Profi-Gartengeräte</h3>
+                <p>Hochwertige Heckenscheren, Rasenmäher und Freischneider für perfekte Schnittergebnisse.</p>
+                <div class="equipment-specs">
+                    <span class="spec-badge">Präzision</span>
+                    <span class="spec-badge">Sauber</span>
+                    <span class="spec-badge">Schnell</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog/Tips Section -->
+<section class="blog-tips" id="blog">
+    <div class="section-header">
+        <span class="section-label">Gartentipps & Wissen</span>
+        <h2>Profitipps vom Experten</h2>
+        <p>Wertvolles Fachwissen für Ihren perfekten Garten – direkt vom Profi.</p>
+    </div>
+    <div class="blog-grid">
+        <div class="blog-card">
+            <div class="blog-image">
+                <span class="blog-category">Pflege</span>
+                🌿
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span>15. November 2024</span>
+                    <span>5 Min. Lesezeit</span>
+                </div>
+                <h3>Garten winterfest machen - Die ultimative Checkliste</h3>
+                <p>Bereiten Sie Ihren Garten optimal auf den Winter vor. Mit diesen Profi-Tipps überstehen Ihre Pflanzen die kalte Jahreszeit.</p>
+                <a href="#" class="read-more">Weiterlesen <span>→</span></a>
+            </div>
+        </div>
+        <div class="blog-card">
+            <div class="blog-image">
+                <span class="blog-category">Gestaltung</span>
+                🌳
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span>28. Oktober 2024</span>
+                    <span>7 Min. Lesezeit</span>
+                </div>
+                <h3>Rollrasen vs. Aussaat - Was ist die bessere Wahl?</h3>
+                <p>Vor- und Nachteile beider Methoden im direkten Vergleich. So treffen Sie die richtige Entscheidung für Ihren Garten.</p>
+                <a href="#" class="read-more">Weiterlesen <span>→</span></a>
+            </div>
+        </div>
+        <div class="blog-card">
+            <div class="blog-image">
+                <span class="blog-category">Planung</span>
+                📐
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span>10. Oktober 2024</span>
+                    <span>6 Min. Lesezeit</span>
+                </div>
+                <h3>Was kostet eine Gartenumgestaltung? Budgetplanung leicht gemacht</h3>
+                <p>Transparente Übersicht über typische Kosten und wie Sie Ihr Budget optimal einsetzen.</p>
+                <a href="#" class="read-more">Weiterlesen <span>→</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section class="projects-section" id="projekte">
+    <div class="section-header">
+        <span class="section-label">Unsere Projekte</span>
+        <h2>Erfolgreiche Projekte im Detail</h2>
+        <p>Entdecken Sie unsere abgeschlossenen Projekte mit allen Details und Ergebnissen.</p>
+    </div>
+
+    <div class="projects-filters">
+        <button class="filter-btn active" data-filter="alle">Alle Projekte</button>
+        <button class="filter-btn" data-filter="gartengestaltung">Gartengestaltung</button>
+        <button class="filter-btn" data-filter="pflasterung">Pflasterarbeiten</button>
+        <button class="filter-btn" data-filter="rollrasen">Rollrasen</button>
+        <button class="filter-btn" data-filter="zaun">Zaunbau</button>
+        <button class="filter-btn" data-filter="terrasse">Terrassen</button>
+    </div>
+
+    <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card" data-category="gartengestaltung">
+            <div class="project-image">
+                <span class="project-badge">Abgeschlossen 2024</span>
+            </div>
+            <div class="project-content">
+                <div class="project-category">Gartengestaltung</div>
+                <h3>Moderne Gartenverwandlung Delmenhorst</h3>
+                <p>Komplette Neugestaltung eines 450qm Gartens mit Terrasse, Hochbeeten und automatischer Bewässerung.</p>
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <span>📍</span>
+                        <span>Delmenhorst</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span>📏</span>
+                        <span>450 m²</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span>⏱️</span>
+                        <span>3 Wochen</span>
+                    </div>
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">Neu</span>
+                    <span class="project-tag">Premium</span>
+                    <span class="project-tag">Bewässerung</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card" data-category="pflasterung">
+            <div class="project-image">
+                <span class="project-badge">Abgeschlossen 2024</span>
+            </div>
+            <div class="project-content">
+                <div class="project-category">Pflasterarbeiten</div>
+                <h3>Einfahrt & Terrasse Bremen</h3>
+                <p>Neuverlegung der Einfahrt und Terrasse mit hochwertigem Naturstein und LED-Beleuchtung.</p>
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <span>📍</span>
+                        <span>Bremen</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span>📏</span>
+                        <span>180 m²</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span>⏱️</span>
+                        <span>2 Wochen</span>
+                    </div>
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">Naturstein</span>
+                    <span class="project-tag">Beleuchtung</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card" data-category="rollrasen">
+            <div class="project-image">
+                <span class="project-badge">Abgeschlossen 2024</span>
+            </div>
+            <div class="project-content">
+                <div class="project-category">Rollrasen</div>
+                <h3>Perfekter Rasen Ganderkesee</h3>
+                <p>Verlegung von Premium-Rollrasen mit automatischer Sprinkleranlage für ganzjährig grünen Rasen.</p>
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <span>📍</span>
+                        <span>Ganderkesee</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span>📏</span>
+                        <span>320 m²</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span>⏱️</span>
+                        <span>1 Woche</span>
+                    </div>
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">Premium</span>
+                    <span class="project-tag">Sprinkler</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card" data-category="zaun">
+            <div class="project-image">
+                <span class="project-badge">Abgeschlossen 2023</span>
+            </div>
+            <div class="project-content">
+                <div class="project-category">Zaunbau</div>
+                <h3>Moderner Sichtschutz Oldenburg</h3>
+                <p>Installation eines modernen Holz-Metall-Zauns mit integrierter Beleuchtung und Pflanzkästen.</p>
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <span>📍</span>
+                        <span>Oldenburg</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span>📏</span>
+                        <span>45 Meter</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span>⏱️</span>
+                        <span>1 Woche</span>
+                    </div>
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">Modern</span>
+                    <span class="project-tag">Holz-Metall</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card" data-category="terrasse">
+            <div class="project-image">
+                <span class="project-badge">Abgeschlossen 2023</span>
+            </div>
+            <div class="project-content">
+                <div class="project-category">Terrassen</div>
+                <h3>Luxus-Holzterrasse Bremen</h3>
+                <p>Premium-Holzterrasse aus Bangkirai mit Unterkonstruktion, Drainage und Outdoor-Küche.</p>
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <span>📍</span>
+                        <span>Bremen</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span>📏</span>
+                        <span>85 m²</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span>⏱️</span>
+                        <span>2 Wochen</span>
+                    </div>
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">Bangkirai</span>
+                    <span class="project-tag">Outdoor-Küche</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card" data-category="gartengestaltung">
+            <div class="project-image">
+                <span class="project-badge">Abgeschlossen 2023</span>
+            </div>
+            <div class="project-content">
+                <div class="project-category">Gartengestaltung</div>
+                <h3>Vorgarten-Modernisierung Delmenhorst</h3>
+                <p>Pflegeleichter Vorgarten mit Zierkies, Hochbeeten und moderner Bepflanzung.</p>
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <span>📍</span>
+                        <span>Delmenhorst</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span>📏</span>
+                        <span>60 m²</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span>⏱️</span>
+                        <span>1 Woche</span>
+                    </div>
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">Pflegeleicht</span>
+                    <span class="project-tag">Modern</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section" id="faq">
+    <div class="section-header">
+        <span class="section-label">Häufige Fragen</span>
+        <h2>Antworten auf Ihre Fragen</h2>
+        <p>Hier finden Sie Antworten auf die am häufigsten gestellten Fragen.</p>
+    </div>
+
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Was kostet ein kompletter Garten?</h3>
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Die Kosten für eine komplette Gartengestaltung hängen von vielen Faktoren ab. Grundsätzlich können Sie mit folgenden Richtwerten rechnen:</p>
+                <ul>
+                    <li>Einfache Gartengestaltung: 50-80 Euro pro m²</li>
+                    <li>Mittlere Ausstattung: 80-150 Euro pro m²</li>
+                    <li>Premium-Gestaltung: 150-300 Euro pro m²</li>
+                </ul>
+                <p>Wir erstellen Ihnen gerne ein individuelles, kostenloses Angebot nach einer Besichtigung vor Ort.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Wie lange dauert die Umsetzung eines Gartenprojekts?</h3>
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Die Dauer hängt vom Umfang des Projekts ab:</p>
+                <ul>
+                    <li>Rollrasenverlegung: 1-2 Tage</li>
+                    <li>Terrassenbau: 3-7 Tage</li>
+                    <li>Komplette Gartengestaltung: 1-4 Wochen</li>
+                    <li>Pflasterarbeiten: 3-10 Tage</li>
+                </ul>
+                <p>Bei der Planung berücksichtigen wir Ihre Wünsche und erstellen einen realistischen Zeitplan.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Bieten Sie eine Garantie auf Ihre Arbeiten?</h3>
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Ja! Wir bieten auf alle unsere Arbeiten eine umfassende Garantie:</p>
+                <ul>
+                    <li>2 Jahre Garantie auf Pflasterarbeiten</li>
+                    <li>1 Jahr Garantie auf Rollrasen</li>
+                    <li>2 Jahre auf Zaunbau und Holzkonstruktionen</li>
+                    <li>Gesetzliche Gewährleistung auf alle Leistungen</li>
+                </ul>
+                <p>Zusätzlich sind alle unsere Arbeiten vollständig versichert.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Welche Zahlungsmöglichkeiten gibt es?</h3>
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Wir bieten flexible Zahlungsmöglichkeiten:</p>
+                <ul>
+                    <li>Überweisung (mit Zahlungsziel)</li>
+                    <li>EC-Kartenzahlung</li>
+                    <li>Ratenzahlung bei größeren Projekten möglich</li>
+                    <li>Anzahlung nur bei größeren Materialbeschaffungen</li>
+                </ul>
+                <p>Bei jedem Projekt erstellen wir eine transparente Abrechnung.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Wie schnell bekomme ich einen Termin?</h3>
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Wir bemühen uns um schnelle Termine:</p>
+                <ul>
+                    <li>Erstberatung: meist innerhalb von 2-5 Werktagen</li>
+                    <li>Kleiner Projekte: oft Start binnen 1-2 Wochen möglich</li>
+                    <li>Größere Projekte: Abstimmung nach Verfügbarkeit</li>
+                    <li>Notfälle: schnellstmögliche Reaktion</li>
+                </ul>
+                <p>Kontaktieren Sie uns einfach für eine unverbindliche Terminabsprache.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Übernehmen Sie auch die Entsorgung von Altmaterialien?</h3>
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Ja, selbstverständlich! Wir bieten einen kompletten Entsorgungsservice:</p>
+                <ul>
+                    <li>Abtransport von alten Pflanzen und Erde</li>
+                    <li>Entsorgung von alten Pflastersteinen und Beton</li>
+                    <li>Abholung alter Gartenmöbel und -geräte</li>
+                    <li>Fachgerechte Entsorgung aller Materialien</li>
+                </ul>
+                <p>Die Kosten werden transparent im Angebot aufgeführt.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Entsorgen Service Section -->
+<section class="entsorgen-section" id="entsorgen">
+    <div class="section-header">
+        <span class="section-label">Entsorgungsservice</span>
+        <h2>Professionelle Entsorgung aller Art</h2>
+        <p>Von Haushaltsauflösungen bis Baustellenabfälle - wir entsorgen fachgerecht und zuverlässig. Senden Sie uns Fotos für ein kostenloses Angebot.</p>
+    </div>
+
+    <div class="entsorgen-container">
+        <div class="entsorgen-info">
+            <h3>Was wir entsorgen:</h3>
+            <ul class="entsorgen-list">
+                <li>Sperrmüll & Haushaltsauflösungen</li>
+                <li>Möbel & Einrichtungsgegenstände</li>
+                <li>Elektrogeräte & Elektronik</li>
+                <li>Bau- & Renovierungsabfälle</li>
+                <li>Gartenabfälle & Grünschnitt</li>
+                <li>Büroausstattung & Gewerbeabfall</li>
+                <li>Altholz & Baumaterialien</li>
+                <li>Schrott & Metallabfälle</li>
+            </ul>
+
+            <div class="entsorgen-benefits">
+                <div class="benefit-box">
+                    <div class="benefit-icon">📸</div>
+                    <h4>Fotos hochladen</h4>
+                    <p>3-5 qualitativ hochwertige Bilder</p>
+                </div>
+                <div class="benefit-box">
+                    <div class="benefit-icon">💰</div>
+                    <h4>Angebot erhalten</h4>
+                    <p>Innerhalb von 24 Stunden</p>
+                </div>
+                <div class="benefit-box">
+                    <div class="benefit-icon">🚛</div>
+                    <h4>Abholen & Entsorgen</h4>
+                    <p>Fachgerecht & umweltfreundlich</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="entsorgen-form-wrapper">
+            <form class="entsorgen-form" id="entsorgenForm">
+                <h3>Kostenlos Angebot anfordern</h3>
+
+                <div class="form-group">
+                    <label>Was soll entsorgt werden? *</label>
+                    <select id="entsorgenType" required>
+                        <option value="">Bitte wählen...</option>
+                        <option value="sperr">Sperrmüll & Haushaltsauflösung</option>
+                        <option value="moebel">Möbel & Einrichtung</option>
+                        <option value="elektro">Elektrogeräte & Elektronik</option>
+                        <option value="bau">Bau- & Renovierungsabfälle</option>
+                        <option value="garten">Gartenabfälle & Grünschnitt</option>
+                        <option value="buero">Büroausstattung & Gewerbe</option>
+                        <option value="holz">Altholz & Baumaterialien</option>
+                        <option value="schrott">Schrott & Metall</option>
+                        <option value="sonstiges">Sonstiges</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Geschätzte Menge</label>
+                    <input type="text" id="entsorgenMenge" placeholder="z.B. 5 Kubikmeter, 10 Säcke, etc.">
+                </div>
+
+                <div class="form-group">
+                    <label>Fotos hochladen * (Pflichtfeld - Max. 5 Bilder)</label>
+                    <div class="quality-requirements">
+                        <p><strong>Wichtig:</strong> Bitte hochwertige, gut beleuchtete Fotos hochladen:</p>
+                        <ul>
+                            <li>Mindestauflösung: 800x600 Pixel</li>
+                            <li>Dateigröße: Mindestens 200KB pro Bild</li>
+                            <li>Format: JPG, PNG, HEIC</li>
+                            <li>Gut beleuchtet und scharf</li>
+                        </ul>
+                    </div>
+                    <div class="upload-area" id="entsorgenUploadArea">
+                        <input type="file" id="entsorgenPhotos" class="upload-input" multiple accept="image/*" required>
+                        <span class="upload-icon-large">📷</span>
+                        <div class="upload-text">Bilder der zu entsorgenden Objekte hochladen</div>
+                        <div class="upload-subtext">Klicken oder Bilder hierher ziehen</div>
+                        <div class="upload-formats">Mindestens 3, maximal 5 Bilder (min. 200KB, 800x600px)</div>
+                    </div>
+                    <div id="entsorgenPreviewGrid" class="image-preview-grid"></div>
+                    <div id="entsorgenUploadCount" style="text-align: center;"></div>
+                    <div id="qualityWarning" class="quality-warning" style="display: none;"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Ihr Name *</label>
+                        <input type="text" id="entsorgenName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon *</label>
+                        <input type="tel" id="entsorgenPhone" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>E-Mail *</label>
+                        <input type="email" id="entsorgenEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>PLZ & Ort *</label>
+                        <input type="text" id="entsorgenOrt" placeholder="27755 Delmenhorst" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Zusätzliche Informationen</label>
+                    <textarea id="entsorgenInfo" placeholder="Besondere Hinweise, Zugangsweg, etc..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    Kostenloses Angebot anfordern
+                    <span>→</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="gallery" id="gallery">
+    <div class="section-header">
+        <span class="section-label">Unsere Arbeit</span>
+        <h2>Projekte die begeistern</h2>
+        <p>Einblicke in unsere erfolgreich umgesetzten Gartenprojekte.</p>
+    </div>
+    <div class="gallery-slider slider-container">
+        <div class="slider-wrapper" id="gallerySliderWrapper">
+            <!-- Slide 1 -->
+            <div class="gallery-slide">
+                <div class="gallery-slide-item" data-label="Gartenanlage komplett"></div>
+                <div class="gallery-slide-item" data-label="Moderne Terrasse"></div>
+                <div class="gallery-slide-item" data-label="Pflasterarbeiten"></div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="gallery-slide">
+                <div class="gallery-slide-item" data-label="Rollrasen verlegen"></div>
+                <div class="gallery-slide-item" data-label="Zaunbau & Sichtschutz"></div>
+                <div class="gallery-slide-item" data-label="Gartengestaltung"></div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="gallery-slide">
+                <div class="gallery-slide-item" data-label="Vorgarten modern"></div>
+                <div class="gallery-slide-item" data-label="Hochbeete & Pflanzung"></div>
+                <div class="gallery-slide-item" data-label="Beleuchtung"></div>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <button class="slider-btn" id="galleryPrev" aria-label="Vorheriges">←</button>
+            <div class="slider-dots" id="galleryDots"></div>
+            <button class="slider-btn" id="galleryNext" aria-label="Nächstes">→</button>
+        </div>
+    </div>
+</section>
+
+<!-- Before/After Section -->
+<section class="before-after" id="before-after">
+    <div class="section-header">
+        <span class="section-label">Vorher / Nachher</span>
+        <h2>Beeindruckende Verwandlungen</h2>
+        <p>Sehen Sie selbst, wie wir Garten in echte Wohlfuhloasen verwandeln.</p>
+    </div>
+    <div class="before-after-grid">
+        <!-- Before/After Item 1 -->
+        <div class="ba-item">
+            <div class="ba-comparison" data-index="0">
+                <div class="ba-before" style="background: linear-gradient(135deg, #8B7355 0%, #A0826D 100%);"></div>
+                <div class="ba-after" style="background: linear-gradient(135deg, #4A7C59 0%, #7CB342 100%);"></div>
+                <div class="ba-slider"></div>
+                <div class="ba-labels">
+                    <span class="ba-label">Vorher</span>
+                    <span class="ba-label">Nachher</span>
+                </div>
+            </div>
+            <div class="ba-info">
+                <h3>Komplette Gartenumgestaltung</h3>
+                <p>Verwandlung eines verwilderten Gartens in eine moderne Wohlfuhloase mit Terrasse, Rasenflache und mediterraner Bepflanzung.</p>
+                <div class="ba-tags">
+                    <span class="ba-tag">Gartengestaltung</span>
+                    <span class="ba-tag">Rollrasen</span>
+                    <span class="ba-tag">Pflasterung</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Before/After Item 2 -->
+        <div class="ba-item">
+            <div class="ba-comparison" data-index="1">
+                <div class="ba-before" style="background: linear-gradient(135deg, #696969 0%, #808080 100%);"></div>
+                <div class="ba-after" style="background: linear-gradient(135deg, #2E5A3C 0%, #4A7C59 100%);"></div>
+                <div class="ba-slider"></div>
+                <div class="ba-labels">
+                    <span class="ba-label">Vorher</span>
+                    <span class="ba-label">Nachher</span>
+                </div>
+            </div>
+            <div class="ba-info">
+                <h3>Terrassen-Neuanlage</h3>
+                <p>Aus einem alten Betonplatz wurde eine elegante Naturstein-Terrasse mit integrierter Beleuchtung und Hochbeeten.</p>
+                <div class="ba-tags">
+                    <span class="ba-tag">Pflasterarbeiten</span>
+                    <span class="ba-tag">Beleuchtung</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Before/After Item 3 -->
+        <div class="ba-item">
+            <div class="ba-comparison" data-index="2">
+                <div class="ba-before" style="background: linear-gradient(135deg, #654321 0%, #8B6914 100%);"></div>
+                <div class="ba-after" style="background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);"></div>
+                <div class="ba-slider"></div>
+                <div class="ba-labels">
+                    <span class="ba-label">Vorher</span>
+                    <span class="ba-label">Nachher</span>
+                </div>
+            </div>
+            <div class="ba-info">
+                <h3>Vorgarten-Modernisierung</h3>
+                <p>Neugestaltung eines Vorgartens mit pflegeleichter Bepflanzung, Zierkies und modernem Wegesystem.</p>
+                <div class="ba-tags">
+                    <span class="ba-tag">Vorgarten</span>
+                    <span class="ba-tag">Pflegeleicht</span>
+                    <span class="ba-tag">Modern</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- YouTube Section -->
+<section class="youtube-section" id="videos">
+    <div class="section-header">
+        <span class="section-label">Video-Galerie</span>
+        <h2>Unsere Projekte in Bewegung</h2>
+        <p>Sehen Sie unsere Gartenprojekte im Video und lassen Sie sich inspirieren.</p>
+    </div>
+    <div class="videos-grid">
+        <!-- Video 1 -->
+        <div class="video-card">
+            <div class="video-thumbnail">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                        title="Gartengestaltung Projekt"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="video-info">
+                <h3>Komplette Gartenumgestaltung</h3>
+                <p>Von der Planung bis zur Fertigstellung - ein Gartenprojekt in Delmenhorst.</p>
+            </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-card">
+            <div class="video-thumbnail">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                        title="Pflasterarbeiten Zeitraffer"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="video-info">
+                <h3>Pflasterarbeiten im Zeitraffer</h3>
+                <p>Terrassenverlegung mit Naturstein - sehen Sie die Verwandlung.</p>
+            </div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="video-card">
+            <div class="video-thumbnail">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                        title="Rollrasen Verlegung"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="video-info">
+                <h3>Rollrasen-Verlegung Profi-Tipps</h3>
+                <p>So verlegen wir Rollrasen fur ein perfektes, dauerhaftes Ergebnis.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials" id="testimonials">
+    <div class="section-header">
+        <span class="section-label">Kundenstimmen</span>
+        <h2>Was unsere Kunden sagen</h2>
+        <p>Zufriedene Kunden sind unsere beste Referenz.</p>
+    </div>
+    <div class="testimonials-slider slider-container">
+        <div class="slider-wrapper" id="testimonialsSliderWrapper">
+            <!-- Slide 1 -->
+            <div class="testimonials-slide">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>„Herr Janis hat unseren Garten komplett neu gestaltet. Das Ergebnis übertrifft alle Erwartungen. Sehr professionell und zuverlässig!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MK</div>
+                        <div class="testimonial-author-info">
+                            <strong>Maria K.</strong>
+                            <span>Delmenhorst</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>„Pünktlich, sauber und super Qualität. Der neue Rollrasen ist einfach perfekt. Kann ich nur weiterempfehlen!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">TS</div>
+                        <div class="testimonial-author-info">
+                            <strong>Thomas S.</strong>
+                            <span>Bremen</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>„Seit Jahren betreut Toni Janis unseren Garten im Abo. Immer zuverlässig und die Pflege ist erstklassig. Vielen Dank!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">AH</div>
+                        <div class="testimonial-author-info">
+                            <strong>Andrea H.</strong>
+                            <span>Ganderkesee</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="testimonials-slide">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>„Die Pflasterarbeiten wurden perfekt ausgeführt. Tolle Beratung und faire Preise. Absolut empfehlenswert!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JM</div>
+                        <div class="testimonial-author-info">
+                            <strong>Jürgen M.</strong>
+                            <span>Oldenburg</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>„Schnelle Entsorgung unserer alten Gartenmöbel. Unkompliziert und zum fairen Preis. Gerne wieder!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SK</div>
+                        <div class="testimonial-author-info">
+                            <strong>Sandra K.</strong>
+                            <span>Delmenhorst</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>„Professionelle Arbeit von A bis Z. Der neue Zaun ist wunderschön und absolut stabil. Danke!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">PW</div>
+                        <div class="testimonial-author-info">
+                            <strong>Peter W.</strong>
+                            <span>Bremen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <button class="slider-btn" id="testimonialsPrev" aria-label="Vorheriges">←</button>
+            <div class="slider-dots" id="testimonialsDots"></div>
+            <button class="slider-btn" id="testimonialsNext" aria-label="Nächstes">→</button>
+        </div>
+    </div>
+</section>
+
+<!-- Appointment Booking Section -->
+<section class="appointment" id="termin">
+    <div class="appointment-container">
+        <div class="appointment-info">
+            <span class="section-label">Terminbuchung</span>
+            <h2>Buchen Sie Ihren Beratungstermin online</h2>
+            <p>Wählen Sie einfach einen passenden Termin für eine kostenlose Vor-Ort-Beratung. Wir kommen zu Ihnen und besprechen Ihr Projekt persönlich.</p>
+
+            <div class="appointment-benefits">
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <span>Kostenlose Erstberatung</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <span>Vor-Ort-Termin bei Ihnen</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <span>Unverbindliches Angebot</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <span>Flexible Terminauswahl</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="calendar-wrapper">
+            <div class="calendar-header">
+                <button class="cal-nav" id="prevMonth">←</button>
+                <h3 id="currentMonth">Dezember 2024</h3>
+                <button class="cal-nav" id="nextMonth">→</button>
+            </div>
+            <div class="calendar-grid">
+                <div class="cal-day-header">Mo</div>
+                <div class="cal-day-header">Di</div>
+                <div class="cal-day-header">Mi</div>
+                <div class="cal-day-header">Do</div>
+                <div class="cal-day-header">Fr</div>
+                <div class="cal-day-header">Sa</div>
+                <div class="cal-day-header">So</div>
+                <!-- Calendar days will be generated by JS -->
+            </div>
+            <div class="time-slots" id="timeSlots" style="display: none;">
+                <h4>Verfügbare Uhrzeiten:</h4>
+                <div class="slots-grid">
+                    <button class="time-slot" data-time="09:00">09:00</button>
+                    <button class="time-slot" data-time="10:00">10:00</button>
+                    <button class="time-slot" data-time="11:00">11:00</button>
+                    <button class="time-slot" data-time="13:00">13:00</button>
+                    <button class="time-slot" data-time="14:00">14:00</button>
+                    <button class="time-slot" data-time="15:00">15:00</button>
+                    <button class="time-slot" data-time="16:00">16:00</button>
+                    <button class="time-slot" data-time="17:00">17:00</button>
+                </div>
+            </div>
+            <div class="booking-summary" id="bookingSummary" style="display: none;">
+                <div class="summary-content">
+                    <span id="selectedDateTime"></span>
+                    <button class="btn btn-primary" id="confirmBooking">Termin bestätigen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quote Request Section -->
+<section class="quote-section" id="angebot">
+    <div class="section-header">
+        <span class="section-label">Kostenloser Kostenvoranschlag</span>
+        <h2>Angebot in 3 einfachen Schritten</h2>
+        <p>Erhalten Sie schnell und unkompliziert ein maßgeschneidertes Angebot für Ihr Gartenprojekt.</p>
+    </div>
+
+    <div class="quote-container">
+        <!-- Progress Steps -->
+        <div class="quote-progress">
+            <div class="progress-step active" data-step="1">
+                <div class="step-number">1</div>
+                <span>Leistung wählen</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="2">
+                <div class="step-number">2</div>
+                <span>Details angeben</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="3">
+                <div class="step-number">3</div>
+                <span>Kontaktdaten</span>
+            </div>
+        </div>
+
+        <!-- Step 1: Service Selection -->
+        <div class="quote-step active" id="quoteStep1">
+            <h3>Welche Leistung benötigen Sie?</h3>
+            <div class="service-selection">
+                <label class="service-option">
+                    <input type="checkbox" name="service" value="gartengestaltung">
+                    <div class="option-card">
+                        <span class="option-icon">🌳</span>
+                        <span class="option-title">Gartengestaltung</span>
+                        <span class="option-desc">Neuanlage & Umgestaltung</span>
+                    </div>
+                </label>
+                <label class="service-option">
+                    <input type="checkbox" name="service" value="gartenpflege">
+                    <div class="option-card">
+                        <span class="option-icon">🌿</span>
+                        <span class="option-title">Gartenpflege</span>
+                        <span class="option-desc">Regelmäßige Pflege & Abo</span>
+                    </div>
+                </label>
+                <label class="service-option">
+                    <input type="checkbox" name="service" value="pflasterarbeiten">
+                    <div class="option-card">
+                        <span class="option-icon">🧱</span>
+                        <span class="option-title">Pflasterarbeiten</span>
+                        <span class="option-desc">Terrassen, Wege, Einfahrten</span>
+                    </div>
+                </label>
+                <label class="service-option">
+                    <input type="checkbox" name="service" value="rollrasen">
+                    <div class="option-card">
+                        <span class="option-icon">🚜</span>
+                        <span class="option-title">Rollrasen</span>
+                        <span class="option-desc">Verlegen & Vorbereitung</span>
+                    </div>
+                </label>
+                <label class="service-option">
+                    <input type="checkbox" name="service" value="zaunbau">
+                    <div class="option-card">
+                        <span class="option-icon">🏠</span>
+                        <span class="option-title">Zaunbau</span>
+                        <span class="option-desc">Zäune & Sichtschutz</span>
+                    </div>
+                </label>
+                <label class="service-option">
+                    <input type="checkbox" name="service" value="winterdienst">
+                    <div class="option-card">
+                        <span class="option-icon">❄️</span>
+                        <span class="option-title">Winterdienst</span>
+                        <span class="option-desc">Schneeräumung & Streuen</span>
+                    </div>
+                </label>
+            </div>
+            <button class="btn btn-primary quote-next" onclick="nextQuoteStep(2)">Weiter →</button>
+        </div>
+
+        <!-- Step 2: Project Details -->
+        <div class="quote-step" id="quoteStep2">
+            <h3>Erzählen Sie uns mehr über Ihr Projekt</h3>
+            <div class="details-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Grundstücksgröße (ca. m²)</label>
+                        <input type="number" id="propertySize" placeholder="z.B. 500">
+                    </div>
+                    <div class="form-group">
+                        <label>Gewünschter Zeitraum</label>
+                        <select id="timeframe">
+                            <option value="">Bitte wählen...</option>
+                            <option value="asap">So schnell wie möglich</option>
+                            <option value="1month">Innerhalb 1 Monat</option>
+                            <option value="3months">Innerhalb 3 Monate</option>
+                            <option value="flexible">Flexibel</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Projektbeschreibung</label>
+                    <textarea id="projectDescription" placeholder="Beschreiben Sie Ihr Projekt so detailliert wie möglich..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Fotos hochladen (optional)</label>
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="projectPhotos" class="upload-input" multiple accept="image/*">
+                        <span class="upload-icon-large">📷</span>
+                        <div class="upload-text">Bilder hochladen</div>
+                        <div class="upload-subtext">Klicken oder Bilder hierher ziehen</div>
+                        <div class="upload-formats">JPG, PNG, HEIC bis zu 5MB pro Bild (max. 10 Bilder)</div>
+                    </div>
+                    <div id="imagePreviewGrid" class="image-preview-grid"></div>
+                    <div id="uploadCount" style="text-align: center;"></div>
+                </div>
+            </div>
+            <div class="quote-buttons">
+                <button class="btn btn-secondary" onclick="prevQuoteStep(1)">← Zurück</button>
+                <button class="btn btn-primary" onclick="nextQuoteStep(3)">Weiter →</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Contact Information -->
+        <div class="quote-step" id="quoteStep3">
+            <h3>Ihre Kontaktdaten</h3>
+            <div class="details-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Vorname *</label>
+                        <input type="text" id="quoteFirstName" placeholder="Ihr Vorname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nachname *</label>
+                        <input type="text" id="quoteLastName" placeholder="Ihr Nachname" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>E-Mail *</label>
+                        <input type="email" id="quoteEmail" placeholder="ihre@email.de" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon *</label>
+                        <input type="tel" id="quotePhone" placeholder="0176 123 45678" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Straße & Hausnummer *</label>
+                        <input type="text" id="quoteStreet" placeholder="Musterstraße 123">
+                    </div>
+                    <div class="form-group">
+                        <label>PLZ & Ort *</label>
+                        <input type="text" id="quoteCity" placeholder="27755 Delmenhorst">
+                    </div>
+                </div>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="quotePrivacy" required>
+                    <span>Ich stimme der <a href="#">Datenschutzerklärung</a> zu *</span>
+                </label>
+            </div>
+            <div class="quote-buttons">
+                <button class="btn btn-secondary" onclick="prevQuoteStep(2)">← Zurück</button>
+                <button class="btn btn-primary" onclick="submitQuote()">Angebot anfordern ✓</button>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="quote-step" id="quoteSuccess">
+            <div class="success-message">
+                <div class="success-icon">✓</div>
+                <h3>Vielen Dank für Ihre Anfrage!</h3>
+                <p>Wir haben Ihre Anfrage erhalten und werden uns innerhalb von 24 Stunden bei Ihnen melden.</p>
+                <button class="btn btn-primary" onclick="resetQuote()">Neue Anfrage starten</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="contact-container">
+        <div class="contact-info">
+            <span class="section-label">Kontakt</span>
+            <h2>Lassen Sie uns Ihren Traumgarten planen</h2>
+            <p>Kontaktieren Sie uns für eine kostenlose Beratung. Wir freuen uns auf Ihr Projekt!</p>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <div class="contact-item-icon">📍</div>
+                    <div class="contact-item-text">
+                        <strong>Adresse</strong>
+                        <span>Düsternort Str. 104<br>27755 Delmenhorst</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📞</div>
+                    <div class="contact-item-text">
+                        <strong>Telefon</strong>
+                        <a href="tel:+4917634326549">0176 343 26549</a><br>
+                        <a href="tel:+4917687829995">0176 878 29995</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">✉️</div>
+                    <div class="contact-item-text">
+                        <strong>E-Mail</strong>
+                        <a href="mailto:toni-janis@hotmail.com">toni-janis@hotmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">💬</div>
+                    <div class="contact-item-text">
+                        <strong>WhatsApp</strong>
+                        <a href="https://wa.me/4917634326549">Nachricht senden</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-form-wrapper">
+            <form class="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Vorname *</label>
+                        <input type="text" placeholder="Ihr Vorname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nachname *</label>
+                        <input type="text" placeholder="Ihr Nachname" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>E-Mail *</label>
+                        <input type="email" placeholder="ihre@email.de" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon</label>
+                        <input type="tel" placeholder="Ihre Telefonnummer">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Gewünschte Leistung</label>
+                    <select>
+                        <option value="">Bitte wählen...</option>
+                        <option value="gestaltung">Gartengestaltung</option>
+                        <option value="pflege">Gartenpflege</option>
+                        <option value="pflaster">Pflasterarbeiten</option>
+                        <option value="rasen">Rollrasen</option>
+                        <option value="zaun">Zaunbau</option>
+                        <option value="winter">Winterdienst</option>
+                        <option value="sonstiges">Sonstiges</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Ihre Nachricht *</label>
+                    <textarea placeholder="Beschreiben Sie Ihr Projekt..." required></textarea>
+                </div>
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        Anfrage senden
+                        <span>→</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">
+                        <strong>Toni Janis</strong>
+                        <span>Garten- und Landschaftsbau</span>
+                    </div>
+                </a>
+                <p>Ihr zuverlässiger Partner für professionelle Gartengestaltung und Landschaftsbau in Delmenhorst und Umgebung.</p>
+                <div class="footer-social">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="https://wa.me/4917634326549" title="WhatsApp">💬</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Leistungen</h4>
+                <ul>
+                    <li><a href="#services">Gartengestaltung</a></li>
+                    <li><a href="#services">Gartenpflege</a></li>
+                    <li><a href="#services">Pflasterarbeiten</a></li>
+                    <li><a href="#services">Rollrasen</a></li>
+                    <li><a href="#services">Zaunbau</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Unternehmen</h4>
+                <ul>
+                    <li><a href="#about">Über uns</a></li>
+                    <li><a href="#gallery">Galerie</a></li>
+                    <li><a href="#testimonials">Referenzen</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Rechtliches</h4>
+                <ul>
+                    <li><a href="#">Impressum</a></li>
+                    <li><a href="#">Datenschutz</a></li>
+                    <li><a href="#">AGB</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Toni Janis Garten- und Landschaftsbau. Alle Rechte vorbehalten.</p>
+            <p>Made with 💚 in Delmenhorst</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Fade in animation on scroll
+    const fadeElements = document.querySelectorAll('.service-card, .testimonial-card, .gallery-item');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => {
+        el.classList.add('fade-in');
+        observer.observe(el);
+    });
+
+    // ============ CALENDAR FUNCTIONALITY ============
+    let currentDate = new Date();
+    let selectedDate = null;
+    let selectedTime = null;
+
+    const months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
+        'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+
+    function renderCalendar() {
+        const grid = document.querySelector('.calendar-grid');
+        const monthLabel = document.getElementById('currentMonth');
+
+        // Clear previous days (keep headers)
+        const headers = Array.from(grid.querySelectorAll('.cal-day-header'));
+        grid.innerHTML = '';
+        headers.forEach(h => grid.appendChild(h));
+
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+
+        monthLabel.textContent = `${months[month]} ${year}`;
+
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const startingDay = (firstDay.getDay() + 6) % 7; // Monday = 0
+
+        // Empty cells before first day
+        for (let i = 0; i < startingDay; i++) {
+            const empty = document.createElement('div');
+            empty.className = 'cal-day empty';
+            grid.appendChild(empty);
+        }
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        // Days of month
+        for (let day = 1; day <= lastDay.getDate(); day++) {
+            const dayEl = document.createElement('div');
+            dayEl.className = 'cal-day';
+            dayEl.textContent = day;
+
+            const thisDate = new Date(year, month, day);
+
+            if (thisDate < today) {
+                dayEl.classList.add('disabled');
+            } else {
+                // Check if it's Sunday (0)
+                if (thisDate.getDay() === 0) {
+                    dayEl.classList.add('disabled');
+                } else {
+                    dayEl.addEventListener('click', () => selectDate(thisDate, dayEl));
+                }
+            }
+
+            if (thisDate.getTime() === today.getTime()) {
+                dayEl.classList.add('today');
+            }
+
+            if (selectedDate && thisDate.getTime() === selectedDate.getTime()) {
+                dayEl.classList.add('selected');
+            }
+
+            grid.appendChild(dayEl);
+        }
+    }
+
+    function selectDate(date, element) {
+        selectedDate = date;
+        selectedTime = null;
+
+        // Update UI
+        document.querySelectorAll('.cal-day').forEach(d => d.classList.remove('selected'));
+        element.classList.add('selected');
+
+        document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+
+        document.getElementById('timeSlots').style.display = 'block';
+        document.getElementById('bookingSummary').style.display = 'none';
+    }
+
+    document.querySelectorAll('.time-slot').forEach(slot => {
+        slot.addEventListener('click', function() {
+            selectedTime = this.dataset.time;
+
+            document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+            this.classList.add('selected');
+
+            // Show summary
+            const summary = document.getElementById('bookingSummary');
+            const dateStr = `${selectedDate.getDate()}. ${months[selectedDate.getMonth()]} ${selectedDate.getFullYear()}`;
+            document.getElementById('selectedDateTime').textContent = `📅 ${dateStr} um ${selectedTime} Uhr`;
+            summary.style.display = 'block';
+        });
+    });
+
+    document.getElementById('prevMonth').addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
+    });
+
+    document.getElementById('nextMonth').addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+    });
+
+    document.getElementById('confirmBooking').addEventListener('click', () => {
+        if (selectedDate && selectedTime) {
+            const dateStr = `${selectedDate.getDate()}. ${months[selectedDate.getMonth()]} ${selectedDate.getFullYear()}`;
+            alert(`✅ Termin gebucht!\n\n📅 Datum: ${dateStr}\n⏰ Uhrzeit: ${selectedTime} Uhr\n\nWir werden Sie zur Bestätigung kontaktieren.`);
+        }
+    });
+
+    // Initialize calendar
+    renderCalendar();
+
+    // ============ BEFORE/AFTER SLIDER FUNCTIONALITY ============
+    const baComparisons = document.querySelectorAll('.ba-comparison');
+
+    baComparisons.forEach(comparison => {
+        const slider = comparison.querySelector('.ba-slider');
+        const afterImage = comparison.querySelector('.ba-after');
+        let isDragging = false;
+
+        function updateSlider(x) {
+            const rect = comparison.getBoundingClientRect();
+            const position = Math.max(0, Math.min(x - rect.left, rect.width));
+            const percentage = (position / rect.width) * 100;
+
+            slider.style.left = percentage + '%';
+            afterImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+        }
+
+        // Mouse events
+        slider.addEventListener('mousedown', () => {
+            isDragging = true;
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            updateSlider(e.clientX);
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Touch events for mobile
+        slider.addEventListener('touchstart', () => {
+            isDragging = true;
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            updateSlider(e.touches[0].clientX);
+        });
+
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+        // Click anywhere on comparison to move slider
+        comparison.addEventListener('click', (e) => {
+            updateSlider(e.clientX);
+        });
+    });
+
+    // ============ IMAGE UPLOAD FUNCTIONALITY ============
+    const uploadArea = document.getElementById('uploadArea');
+    const uploadInput = document.getElementById('projectPhotos');
+    const previewGrid = document.getElementById('imagePreviewGrid');
+    const uploadCountEl = document.getElementById('uploadCount');
+    let uploadedFiles = [];
+    const MAX_FILES = 10;
+    const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
+    // Drag and drop handlers
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('drag-over');
+    });
+
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('drag-over');
+    });
+
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('drag-over');
+        const files = Array.from(e.dataTransfer.files);
+        handleFiles(files);
+    });
+
+    // File input change
+    uploadInput.addEventListener('change', (e) => {
+        const files = Array.from(e.target.files);
+        handleFiles(files);
+    });
+
+    function handleFiles(files) {
+        const validFiles = files.filter(file => {
+            // Check file type
+            if (!file.type.startsWith('image/')) {
+                alert(`${file.name} ist keine Bilddatei`);
+                return false;
+            }
+            // Check file size
+            if (file.size > MAX_FILE_SIZE) {
+                alert(`${file.name} ist zu groß (max. 5MB)`);
+                return false;
+            }
+            return true;
+        });
+
+        // Check total count
+        if (uploadedFiles.length + validFiles.length > MAX_FILES) {
+            alert(`Sie können maximal ${MAX_FILES} Bilder hochladen`);
+            return;
+        }
+
+        validFiles.forEach(file => {
+            uploadedFiles.push(file);
+            displayPreview(file);
+        });
+
+        updateUploadCount();
+    }
+
+    function displayPreview(file) {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            const previewItem = document.createElement('div');
+            previewItem.className = 'preview-item';
+            previewItem.dataset.filename = file.name;
+
+            previewItem.innerHTML = `
+                    <img src="${e.target.result}" alt="${file.name}" class="preview-image">
+                    <button class="preview-remove" onclick="removeImage('${file.name}')" type="button">×</button>
+                    <div class="preview-filename">${file.name}</div>
+                `;
+
+            previewGrid.appendChild(previewItem);
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    function removeImage(filename) {
+        // Remove from array
+        uploadedFiles = uploadedFiles.filter(file => file.name !== filename);
+
+        // Remove from DOM
+        const previewItem = document.querySelector(`[data-filename="${filename}"]`);
+        if (previewItem) {
+            previewItem.remove();
+        }
+
+        updateUploadCount();
+    }
+
+    function updateUploadCount() {
+        if (uploadedFiles.length > 0) {
+            uploadCountEl.innerHTML = `<span class="upload-count">${uploadedFiles.length} ${uploadedFiles.length === 1 ? 'Bild' : 'Bilder'} hochgeladen</span>`;
+        } else {
+            uploadCountEl.innerHTML = '';
+        }
+    }
+
+    // Make removeImage available globally
+    window.removeImage = removeImage;
+
+    // ============ ENTSORGEN IMAGE UPLOAD WITH QUALITY CHECK ============
+    const entsorgenUploadArea = document.getElementById('entsorgenUploadArea');
+    const entsorgenInput = document.getElementById('entsorgenPhotos');
+    const entsorgenPreviewGrid = document.getElementById('entsorgenPreviewGrid');
+    const entsorgenUploadCountEl = document.getElementById('entsorgenUploadCount');
+    const qualityWarningEl = document.getElementById('qualityWarning');
+    let entsorgenFiles = [];
+    const MIN_ENTSORGEN_FILES = 3;
+    const MAX_ENTSORGEN_FILES = 5;
+    const MIN_FILE_SIZE = 200 * 1024; // 200KB
+    const MIN_WIDTH = 800;
+    const MIN_HEIGHT = 600;
+
+    // Drag and drop handlers for Entsorgen
+    entsorgenUploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        entsorgenUploadArea.classList.add('drag-over');
+    });
+
+    entsorgenUploadArea.addEventListener('dragleave', () => {
+        entsorgenUploadArea.classList.remove('drag-over');
+    });
+
+    entsorgenUploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        entsorgenUploadArea.classList.remove('drag-over');
+        const files = Array.from(e.dataTransfer.files);
+        handleEntsorgenFiles(files);
+    });
+
+    // File input change for Entsorgen
+    entsorgenInput.addEventListener('change', (e) => {
+        const files = Array.from(e.target.files);
+        handleEntsorgenFiles(files);
+    });
+
+    async function handleEntsorgenFiles(files) {
+        // Clear previous warnings
+        qualityWarningEl.style.display = 'none';
+        qualityWarningEl.className = 'quality-warning';
+
+        // Check total count
+        if (entsorgenFiles.length + files.length > MAX_ENTSORGEN_FILES) {
+            showQualityWarning(`Sie können maximal ${MAX_ENTSORGEN_FILES} Bilder hochladen`, 'error');
+            return;
+        }
+
+        for (const file of files) {
+            // Check file type
+            if (!file.type.startsWith('image/')) {
+                showQualityWarning(`${file.name} ist keine Bilddatei`, 'error');
+                continue;
+            }
+
+            // Check file size minimum
+            if (file.size < MIN_FILE_SIZE) {
+                showQualityWarning(`${file.name} ist zu klein (min. 200KB). Bitte hochwertigere Bilder hochladen.`, 'error');
+                continue;
+            }
+
+            // Check image dimensions
+            const dimensions = await checkImageDimensions(file);
+            if (!dimensions) {
+                showQualityWarning(`${file.name} konnte nicht geladen werden`, 'error');
+                continue;
+            }
+
+            if (dimensions.width < MIN_WIDTH || dimensions.height < MIN_HEIGHT) {
+                showQualityWarning(
+                    `${file.name} hat eine zu niedrige Auflösung (${dimensions.width}x${dimensions.height}). Mindestens ${MIN_WIDTH}x${MIN_HEIGHT} erforderlich.`,
+                    'error'
+                );
+                continue;
+            }
+
+            // Check for blur/quality (basic check based on file size vs resolution)
+            const qualityRatio = file.size / (dimensions.width * dimensions.height);
+            if (qualityRatio < 0.1) {
+                showQualityWarning(
+                    `${file.name} scheint zu stark komprimiert oder von geringer Qualität zu sein. Bitte ein klareres Foto hochladen.`,
+                    'error'
+                );
+                continue;
+            }
+
+            // File passed all checks
+            entsorgenFiles.push(file);
+            displayEntsorgenPreview(file, dimensions);
+        }
+
+        updateEntsorgenCount();
+    }
+
+    function checkImageDimensions(file) {
+        return new Promise((resolve) => {
+            const img = new Image();
+            const url = URL.createObjectURL(file);
+
+            img.onload = () => {
+                URL.revokeObjectURL(url);
+                resolve({
+                    width: img.width,
+                    height: img.height
+                });
+            };
+
+            img.onerror = () => {
+                URL.revokeObjectURL(url);
+                resolve(null);
+            };
+
+            img.src = url;
+        });
+    }
+
+    function displayEntsorgenPreview(file, dimensions) {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            const previewItem = document.createElement('div');
+            previewItem.className = 'preview-item';
+            previewItem.dataset.filename = file.name;
+
+            const sizeKB = Math.round(file.size / 1024);
+            previewItem.innerHTML = `
+                    <img src="${e.target.result}" alt="${file.name}" class="preview-image">
+                    <button class="preview-remove" onclick="removeEntsorgenImage('${file.name}')" type="button">×</button>
+                    <div class="preview-filename">${file.name} (${sizeKB}KB - ${dimensions.width}x${dimensions.height})</div>
+                `;
+
+            entsorgenPreviewGrid.appendChild(previewItem);
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    function removeEntsorgenImage(filename) {
+        // Remove from array
+        entsorgenFiles = entsorgenFiles.filter(file => file.name !== filename);
+
+        // Remove from DOM
+        const previewItem = entsorgenPreviewGrid.querySelector(`[data-filename="${filename}"]`);
+        if (previewItem) {
+            previewItem.remove();
+        }
+
+        updateEntsorgenCount();
+    }
+
+    function updateEntsorgenCount() {
+        if (entsorgenFiles.length > 0) {
+            const remaining = MAX_ENTSORGEN_FILES - entsorgenFiles.length;
+            let countText = `<span class="upload-count">${entsorgenFiles.length} ${entsorgenFiles.length === 1 ? 'Bild' : 'Bilder'} hochgeladen</span>`;
+
+            if (entsorgenFiles.length < MIN_ENTSORGEN_FILES) {
+                countText += ` <span style="color: #ff9800; margin-left: 0.5rem;">(Noch ${MIN_ENTSORGEN_FILES - entsorgenFiles.length} erforderlich)</span>`;
+            } else if (remaining > 0) {
+                countText += ` <span style="color: #4caf50; margin-left: 0.5rem;">(Noch ${remaining} möglich)</span>`;
+            } else {
+                countText += ` <span style="color: #4caf50; margin-left: 0.5rem;">(Maximum erreicht)</span>`;
+            }
+
+            entsorgenUploadCountEl.innerHTML = countText;
+
+            if (entsorgenFiles.length >= MIN_ENTSORGEN_FILES) {
+                showQualityWarning(`Perfekt! Sie haben ${entsorgenFiles.length} qualitativ hochwertige Bilder hochgeladen.`, 'success');
+            }
+        } else {
+            entsorgenUploadCountEl.innerHTML = '';
+        }
+    }
+
+    function showQualityWarning(message, type = 'error') {
+        qualityWarningEl.textContent = message;
+        qualityWarningEl.className = `quality-warning ${type}`;
+        qualityWarningEl.style.display = 'block';
+    }
+
+    // Form submission validation for Entsorgen
+    document.getElementById('entsorgenForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (entsorgenFiles.length < MIN_ENTSORGEN_FILES) {
+            showQualityWarning(`Bitte laden Sie mindestens ${MIN_ENTSORGEN_FILES} qualitativ hochwertige Bilder hoch.`, 'error');
+            window.scrollTo({ top: entsorgenUploadArea.offsetTop - 100, behavior: 'smooth' });
+            return;
+        }
+
+        // All validations passed
+        showQualityWarning('Vielen Dank! Ihre Anfrage wird verarbeitet. Wir melden uns innerhalb von 24 Stunden bei Ihnen.', 'success');
+
+        // Here you would normally send the form data to the server
+        setTimeout(() => {
+            alert('✅ Anfrage erfolgreich gesendet!\n\nWir haben Ihre Entsorgungsanfrage mit ' + entsorgenFiles.length + ' Bildern erhalten.\n\nSie erhalten innerhalb von 24 Stunden ein kostenloses Angebot von uns.');
+            // Reset form
+            document.getElementById('entsorgenForm').reset();
+            entsorgenFiles = [];
+            entsorgenPreviewGrid.innerHTML = '';
+            updateEntsorgenCount();
+            qualityWarningEl.style.display = 'none';
+        }, 1000);
+    });
+
+    // Make removeEntsorgenImage available globally
+    window.removeEntsorgenImage = removeEntsorgenImage;
+
+    // ============ SLIDER FUNCTIONALITY ============
+    class Slider {
+        constructor(wrapperId, prevBtnId, nextBtnId, dotsId, options = {}) {
+            this.wrapper = document.getElementById(wrapperId);
+            this.prevBtn = document.getElementById(prevBtnId);
+            this.nextBtn = document.getElementById(nextBtnId);
+            this.dotsContainer = document.getElementById(dotsId);
+
+            if (!this.wrapper) return;
+
+            this.slides = this.wrapper.children;
+            this.currentIndex = 0;
+            this.autoPlay = options.autoPlay || false;
+            this.autoPlayInterval = options.autoPlayInterval || 5000;
+            this.autoPlayTimer = null;
+
+            this.init();
+        }
+
+        init() {
+            // Create dots
+            this.createDots();
+
+            // Set initial state
+            this.updateSlider();
+
+            // Event listeners
+            if (this.prevBtn) {
+                this.prevBtn.addEventListener('click', () => this.prev());
+            }
+            if (this.nextBtn) {
+                this.nextBtn.addEventListener('click', () => this.next());
+            }
+
+            // Touch/swipe support
+            this.addTouchSupport();
+
+            // Auto play
+            if (this.autoPlay) {
+                this.startAutoPlay();
+
+                // Pause on hover
+                this.wrapper.parentElement.addEventListener('mouseenter', () => this.stopAutoPlay());
+                this.wrapper.parentElement.addEventListener('mouseleave', () => this.startAutoPlay());
+            }
+        }
+
+        createDots() {
+            if (!this.dotsContainer) return;
+
+            this.dotsContainer.innerHTML = '';
+            for (let i = 0; i < this.slides.length; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'slider-dot';
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => this.goToSlide(i));
+                this.dotsContainer.appendChild(dot);
+            }
+        }
+
+        updateSlider() {
+            // Move slider
+            const translateX = -this.currentIndex * 100;
+            this.wrapper.style.transform = `translateX(${translateX}%)`;
+
+            // Update dots
+            if (this.dotsContainer) {
+                const dots = this.dotsContainer.children;
+                for (let i = 0; i < dots.length; i++) {
+                    dots[i].classList.toggle('active', i === this.currentIndex);
+                }
+            }
+
+            // Update buttons
+            if (this.prevBtn) {
+                this.prevBtn.disabled = this.currentIndex === 0;
+            }
+            if (this.nextBtn) {
+                this.nextBtn.disabled = this.currentIndex === this.slides.length - 1;
+            }
+        }
+
+        next() {
+            if (this.currentIndex < this.slides.length - 1) {
+                this.currentIndex++;
+                this.updateSlider();
+            } else if (this.autoPlay) {
+                // Loop back to start in autoplay mode
+                this.currentIndex = 0;
+                this.updateSlider();
+            }
+        }
+
+        prev() {
+            if (this.currentIndex > 0) {
+                this.currentIndex--;
+                this.updateSlider();
+            }
+        }
+
+        goToSlide(index) {
+            this.currentIndex = index;
+            this.updateSlider();
+        }
+
+        addTouchSupport() {
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            this.wrapper.parentElement.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            this.wrapper.parentElement.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                this.handleSwipe();
+            });
+
+            const handleSwipe = () => {
+                if (touchEndX < touchStartX - 50) {
+                    this.next();
+                }
+                if (touchEndX > touchStartX + 50) {
+                    this.prev();
+                }
+            };
+
+            this.handleSwipe = handleSwipe;
+        }
+
+        startAutoPlay() {
+            if (this.autoPlay) {
+                this.stopAutoPlay();
+                this.autoPlayTimer = setInterval(() => this.next(), this.autoPlayInterval);
+            }
+        }
+
+        stopAutoPlay() {
+            if (this.autoPlayTimer) {
+                clearInterval(this.autoPlayTimer);
+                this.autoPlayTimer = null;
+            }
+        }
+    }
+
+    // Initialize sliders
+    const gallerySlider = new Slider(
+        'gallerySliderWrapper',
+        'galleryPrev',
+        'galleryNext',
+        'galleryDots',
+        { autoPlay: true, autoPlayInterval: 6000 }
+    );
+
+    const testimonialsSlider = new Slider(
+        'testimonialsSliderWrapper',
+        'testimonialsPrev',
+        'testimonialsNext',
+        'testimonialsDots',
+        { autoPlay: true, autoPlayInterval: 7000 }
+    );
+
+    // ============ PROJECTS FILTER FUNCTIONALITY ============
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+
+            // Filter projects
+            projectCards.forEach(card => {
+                if (filter === 'alle') {
+                    card.classList.remove('hidden');
+                } else {
+                    if (card.dataset.category === filter) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    });
+
+    // ============ FAQ ACCORDION FUNCTIONALITY ============
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+
+        question.addEventListener('click', () => {
+            // Check if this item is already active
+            const isActive = item.classList.contains('active');
+
+            // Close all FAQ items
+            faqItems.forEach(faq => faq.classList.remove('active'));
+
+            // If it wasn't active, open it
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+
+    // ============ QUOTE FORM FUNCTIONALITY ============
+    let currentQuoteStep = 1;
+
+    function nextQuoteStep(step) {
+        document.querySelector(`#quoteStep${currentQuoteStep}`).classList.remove('active');
+        document.querySelector(`.progress-step[data-step="${currentQuoteStep}"]`).classList.remove('active');
+        document.querySelector(`.progress-step[data-step="${currentQuoteStep}"]`).classList.add('completed');
+
+        currentQuoteStep = step;
+
+        document.querySelector(`#quoteStep${step}`).classList.add('active');
+        document.querySelector(`.progress-step[data-step="${step}"]`).classList.add('active');
+    }
+
+    function prevQuoteStep(step) {
+        document.querySelector(`#quoteStep${currentQuoteStep}`).classList.remove('active');
+        document.querySelector(`.progress-step[data-step="${currentQuoteStep}"]`).classList.remove('active');
+
+        currentQuoteStep = step;
+
+        document.querySelector(`#quoteStep${step}`).classList.add('active');
+        document.querySelector(`.progress-step[data-step="${step}"]`).classList.remove('completed');
+        document.querySelector(`.progress-step[data-step="${step}"]`).classList.add('active');
+    }
+
+    function submitQuote() {
+        // Basic validation
+        const firstName = document.getElementById('quoteFirstName').value;
+        const lastName = document.getElementById('quoteLastName').value;
+        const email = document.getElementById('quoteEmail').value;
+        const phone = document.getElementById('quotePhone').value;
+        const privacy = document.getElementById('quotePrivacy').checked;
+
+        if (!firstName || !lastName || !email || !phone || !privacy) {
+            alert('Bitte füllen Sie alle Pflichtfelder aus.');
+            return;
+        }
+
+        // Hide step 3, show success
+        document.querySelector(`#quoteStep3`).classList.remove('active');
+        document.querySelector('#quoteSuccess').classList.add('active');
+
+        // Mark all steps as completed
+        document.querySelectorAll('.progress-step').forEach(s => {
+            s.classList.remove('active');
+            s.classList.add('completed');
+        });
+    }
+
+    function resetQuote() {
+        currentQuoteStep = 1;
+
+        // Reset all steps
+        document.querySelectorAll('.quote-step').forEach(s => s.classList.remove('active'));
+        document.querySelector('#quoteStep1').classList.add('active');
+
+        // Reset progress
+        document.querySelectorAll('.progress-step').forEach(s => {
+            s.classList.remove('active', 'completed');
+        });
+        document.querySelector('.progress-step[data-step="1"]').classList.add('active');
+
+        // Reset form fields
+        document.querySelectorAll('.service-option input').forEach(i => i.checked = false);
+        document.querySelectorAll('.details-form input, .details-form textarea, .details-form select').forEach(i => {
+            if (i.type === 'checkbox') i.checked = false;
+            else i.value = '';
+        });
+    }
+    // ============ SERVICE DETAIL MODAL FUNCTIONALITY ============
+    const serviceModal = document.createElement('div');
+    serviceModal.className = 'service-modal';
+    serviceModal.id = 'serviceModal';
+    document.body.appendChild(serviceModal);
+
+    // Service data
+    const servicesData = {
+        gartengestaltung: {
+            icon: '🌳',
+            title: 'Gartengestaltung',
+            description: 'Kreative Planung und professionelle Umsetzung Ihrer individuellen Gartenträume',
+            features: [
+                { icon: '📐', title: 'Individuelle Planung', text: 'Maßgeschneiderte Konzepte nach Ihren Wünschen und den örtlichen Gegebenheiten' },
+                { icon: '🎨', title: 'Kreatives Design', text: 'Moderne und zeitlose Gartengestaltung mit Stil' },
+                { icon: '🌱', title: 'Bepflanzung', text: 'Auswahl passender Pflanzen für jeden Standort' },
+                { icon: '💧', title: 'Bewässerung', text: 'Automatische Bewässerungssysteme auf Wunsch' }
+            ],
+            pricing: [
+                { label: 'Basis', value: '50-80€/m²' },
+                { label: 'Standard', value: '80-150€/m²' },
+                { label: 'Premium', value: '150-300€/m²' }
+            ]
+        },
+        gartenpflege: {
+            icon: '🌿',
+            title: 'Gartenpflege',
+            description: 'Regelmäßige professionelle Pflege für einen dauerhaft gepflegten Garten',
+            features: [
+                { icon: '✂️', title: 'Rasenpflege', text: 'Mähen, Vertikutieren, Düngen für perfekten Rasen' },
+                { icon: '🌳', title: 'Hecken & Sträucher', text: 'Fachgerechter Schnitt zur richtigen Jahreszeit' },
+                { icon: '🗓️', title: 'Abo-Service', text: 'Regelmäßige Pflege nach festem Zeitplan' },
+                { icon: '🍂', title: 'Saisonarbeiten', text: 'Herbstlaub, Winterschutz, Frühjahrsputz' }
+            ],
+            pricing: [
+                { label: 'Einmalig', value: 'ab 45€/Std' },
+                { label: 'Monatlich', value: 'ab 120€/Mon' },
+                { label: 'Jahresabo', value: 'ab 100€/Mon' }
+            ]
+        },
+        pflasterung: {
+            icon: '🧱',
+            title: 'Pflasterarbeiten',
+            description: 'Hochwertige Pflasterarbeiten für Terrassen, Wege und Einfahrten',
+            features: [
+                { icon: '🏗️', title: 'Terrassen', text: 'Naturstein, Beton oder Keramikplatten' },
+                { icon: '🚗', title: 'Einfahrten', text: 'Belastbare Pflasterung für Fahrzeuge' },
+                { icon: '🛤️', title: 'Gartenwege', text: 'Funktionale und dekorative Wegeführung' },
+                { icon: '💡', title: 'Beleuchtung', text: 'Integration von LED-Beleuchtung möglich' }
+            ],
+            pricing: [
+                { label: 'Betonstein', value: '60-90€/m²' },
+                { label: 'Naturstein', value: '90-150€/m²' },
+                { label: 'Premium', value: '150-250€/m²' }
+            ]
+        },
+        rollrasen: {
+            icon: '🚜',
+            title: 'Rollrasen verlegen',
+            description: 'Sofort grüner Rasen durch professionelle Rollrasenverlegung',
+            features: [
+                { icon: '🌱', title: 'Premium-Qualität', text: 'Hochwertige Rasensorten für jeden Standort' },
+                { icon: '⚡', title: 'Schnell nutzbar', text: 'Nach 2-3 Wochen voll belastbar' },
+                { icon: '📏', title: 'Bodenvorbereitung', text: 'Professionelle Vorbereitung des Untergrunds' },
+                { icon: '💧', title: 'Erstpflege', text: 'Anleitung und Tipps für optimales Anwachsen' }
+            ],
+            pricing: [
+                { label: 'Basis', value: '15-20€/m²' },
+                { label: 'Premium', value: '20-30€/m²' },
+                { label: 'Mit Sprinkler', value: '35-45€/m²' }
+            ]
+        },
+        zaunbau: {
+            icon: '🏠',
+            title: 'Zaunbau & Sichtschutz',
+            description: 'Hochwertige Zäune und Sichtschutzelemente für mehr Privatsphäre',
+            features: [
+                { icon: '🪵', title: 'Holzzäune', text: 'Natürliche und warme Optik' },
+                { icon: '🔧', title: 'Metallzäune', text: 'Robust und pflegeleicht' },
+                { icon: '🎋', title: 'Sichtschutz', text: 'Elemente aus Holz, Metall oder Bambus' },
+                { icon: '🔒', title: 'Tore & Türen', text: 'Passende Zugangslösungen' }
+            ],
+            pricing: [
+                { label: 'Holz', value: '80-120€/m' },
+                { label: 'Metall', value: '100-180€/m' },
+                { label: 'Kombi', value: '150-250€/m' }
+            ]
+        },
+        winterdienst: {
+            icon: '❄️',
+            title: 'Winterdienst',
+            description: 'Zuverlässiger Winterdienst für sichere Wege und Einfahrten',
+            features: [
+                { icon: '🚜', title: 'Schneeräumung', text: 'Schnelle Räumung bei Schneefall' },
+                { icon: '🧂', title: 'Streudienst', text: 'Professionelles Streuen gegen Glätte' },
+                { icon: '📞', title: 'Bereitschaft', text: '24/7 erreichbar während Winterperiode' },
+                { icon: '📅', title: 'Vertragsservice', text: 'Saisonverträge für Gewerbe und Privat' }
+            ],
+            pricing: [
+                { label: 'Pro Einsatz', value: 'ab 45€' },
+                { label: 'Monat', value: 'ab 150€/Mon' },
+                { label: 'Saison', value: 'ab 500€' }
+            ]
+        }
+    };
+
+    // Open modal function
+    function openServiceModal(serviceKey) {
+        const service = servicesData[serviceKey];
+        if (!service) return;
+
+        serviceModal.innerHTML = `
+                <div class="service-modal-content">
+                    <button class="service-modal-close" onclick="closeServiceModal()">×</button>
+
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon">${service.icon}</div>
+                        <h2>${service.title}</h2>
+                        <p>${service.description}</p>
+                    </div>
+
+                    <div class="service-detail-body">
+                        <div class="service-detail-section">
+                            <h3>🎯 Was wir bieten</h3>
+                            <div class="service-features-grid">
+                                ${service.features.map(feature => `
+                                    <div class="service-feature-item">
+                                        <div class="service-feature-icon">${feature.icon}</div>
+                                        <div class="service-feature-content">
+                                            <h4>${feature.title}</h4>
+                                            <p>${feature.text}</p>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <div class="service-detail-section">
+                            <div class="service-pricing">
+                                <h4>💰 Preisorientierung (inkl. Material)</h4>
+                                <div class="pricing-grid">
+                                    ${service.pricing.map(price => `
+                                        <div class="pricing-item">
+                                            <div class="pricing-label">${price.label}</div>
+                                            <div class="pricing-value">${price.value}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            <p style="text-align: center; color: var(--earth-brown); font-size: 0.9rem; margin-top: 1rem;">
+                                Die finalen Preise hängen von Ihren individuellen Anforderungen ab. Wir erstellen Ihnen gerne ein kostenloses, unverbindliches Angebot.
+                            </p>
+                        </div>
+
+                        <div class="service-detail-section">
+                            <div class="service-quote-form">
+                                <h3>📝 Individuelles Angebot anfordern</h3>
+                                <form onsubmit="submitServiceQuote(event, '${serviceKey}')">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Ihr Name *</label>
+                                            <input type="text" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Telefon *</label>
+                                            <input type="tel" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>E-Mail *</label>
+                                            <input type="email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>PLZ & Ort *</label>
+                                            <input type="text" placeholder="27755 Delmenhorst" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Projektbeschreibung</label>
+                                        <textarea placeholder="Beschreiben Sie Ihr Projekt so detailliert wie möglich..." rows="4"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                        Kostenloses Angebot anfordern
+                                        <span>→</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+        serviceModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Close modal function
+    function closeServiceModal() {
+        serviceModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Make functions global
+    window.openServiceModal = openServiceModal;
+    window.closeServiceModal = closeServiceModal;
+
+    // Submit service quote
+    window.submitServiceQuote = function(event, serviceKey) {
+        event.preventDefault();
+        alert(`Vielen Dank für Ihre Anfrage für ${servicesData[serviceKey].title}!\n\nWir werden uns innerhalb von 24 Stunden bei Ihnen melden.`);
+        closeServiceModal();
+    };
+
+    // Close modal on background click
+    serviceModal.addEventListener('click', (e) => {
+        if (e.target === serviceModal) {
+            closeServiceModal();
+        }
+    });
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && serviceModal.classList.contains('active')) {
+            closeServiceModal();
+        }
+    });
+
+    // Add click handlers to service links
+    document.querySelectorAll('.service-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const serviceKey = link.dataset.service;
+            if (serviceKey) {
+                e.preventDefault();
+                openServiceModal(serviceKey);
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

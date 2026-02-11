@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toni Janis Flyer - Vorderseite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            gap: 40px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #2E5A3C;
+            text-align: center;
+        }
+
+        .info-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 800px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .info-box h2 {
+            color: #2E5A3C;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .info-box p {
+            color: #5D4037;
+            line-height: 1.6;
+        }
+
+        .flyer-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .flyer-wrapper {
+            text-align: center;
+        }
+
+        .flyer-label {
+            font-weight: 600;
+            color: #2E5A3C;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Flyer A5 = 148mm x 210mm = ~420px x 595px at 72dpi */
+        .flyer {
+            width: 420px;
+            height: 595px;
+            background: linear-gradient(180deg, #FAF8F5 0%, #E8E0D5 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+
+        /* === FLYER VORDERSEITE === */
+        .flyer-front {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Band */
+        .flyer-header {
+            background: linear-gradient(135deg, #2E5A3C 0%, #4A7C59 100%);
+            padding: 25px 30px;
+            position: relative;
+        }
+
+        .flyer-header::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(135deg, #2E5A3C 0%, #4A7C59 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 30%, 0 100%);
+        }
+
+        .flyer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .flyer-logo-icon {
+            width: 55px;
+            height: 55px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flyer-logo-icon svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
+        }
+
+        .flyer-logo-text {
+            color: white;
+        }
+
+        .flyer-logo-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .flyer-logo-text span {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        /* Hero Content */
+        .flyer-hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 30px 30px;
+            position: relative;
+        }
+
+        .flyer-hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(124, 179, 66, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .flyer-badge {
+            background: rgba(46, 90, 60, 0.1);
+            color: #2E5A3C;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .flyer-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #2E5A3C;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+
+        .flyer-hero h1 span {
+            color: #7CB342;
+        }
+
+        .flyer-hero p {
+            color: #5D4037;
+            font-size: 1rem;
+            max-width: 320px;
+            line-height: 1.6;
+        }
+
+        /* Decorative Leaf */
+        .leaf-deco {
+            position: absolute;
+            width: 80px;
+            height: 120px;
+            opacity: 0.1;
+        }
+
+        .leaf-deco.left {
+            left: 10px;
+            bottom: 180px;
+            transform: rotate(-15deg);
+        }
+
+        .leaf-deco.right {
+            right: 10px;
+            top: 150px;
+            transform: rotate(25deg);
+        }
+
+        /* Services Strip */
+        .flyer-services {
+            background: white;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            border-top: 3px solid #7CB342;
+        }
+
+        .flyer-service-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .flyer-service-item .icon {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .flyer-service-item span {
+            font-size: 0.7rem;
+            color: #2E5A3C;
+            font-weight: 600;
+            display: block;
+            line-height: 1.3;
+        }
+
+        /* CTA Section */
+        .flyer-cta {
+            background: linear-gradient(135deg, #2E5A3C 0%, #4A7C59 100%);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .flyer-cta-text {
+            color: white;
+        }
+
+        .flyer-cta-text strong {
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .flyer-cta-text span {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .flyer-cta-phone {
+            background: white;
+            color: #2E5A3C;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        /* === FLYER RÜCKSEITE === */
+        .flyer-back {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flyer-back-header {
+            background: linear-gradient(135deg, #2E5A3C 0%, #4A7C59 100%);
+            padding: 20px 25px;
+            text-align: center;
+            color: white;
+        }
+
+        .flyer-back-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .flyer-back-header p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .services-list {
+            flex: 1;
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            background: #FAF8F5;
+        }
+
+        .service-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 3px solid #7CB342;
+        }
+
+        .service-item .icon {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .service-item h4 {
+            font-size: 0.85rem;
+            color: #2E5A3C;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .service-item p {
+            font-size: 0.7rem;
+            color: #5D4037;
+            line-height: 1.4;
+        }
+
+        .contact-section {
+            background: #E8E0D5;
+            padding: 20px 25px;
+        }
+
+        .contact-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: #2E5A3C;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 10px 12px;
+            border-radius: 8px;
+        }
+
+        .contact-item .icon {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #2E5A3C 0%, #4A7C59 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item span {
+            font-size: 0.75rem;
+            color: #2E5A3C;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .flyer-back-footer {
+            background: linear-gradient(135deg, #2E5A3C 0%, #4A7C59 100%);
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+        }
+
+        .footer-logo-icon {
+            width: 35px;
+            height: 35px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-logo span {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .qr-placeholder {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.5rem;
+            color: #2E5A3C;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Color Palette Display */
+        .color-palette {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .color-swatch {
+            text-align: center;
+        }
+
+        .color-swatch .swatch {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .color-swatch span {
+            font-size: 0.75rem;
+            color: #5D4037;
+            display: block;
+        }
+
+        .color-swatch code {
+            font-size: 0.7rem;
+            color: #2E5A3C;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌿 Toni Janis - Flyer Design Template</h1>
+    
+    <div class="info-box">
+        <h2>📐 Spezifikationen für Canva</h2>
+        <p>
+            <strong>Format:</strong> DIN A5 (148 × 210 mm) oder DIN A6 (105 × 148 mm)<br>
+            <strong>Auflösung:</strong> 300 DPI für Druck<br>
+            <strong>Beschnitt:</strong> 3mm an allen Seiten hinzufügen<br>
+            <strong>Schriften:</strong> Playfair Display (Überschriften) + Source Sans Pro (Text)<br>
+            <strong>Tipp:</strong> In Canva "Benutzerdefinierte Größe" wählen: 154 × 216 mm (mit Beschnitt)
+        </p>
+    </div>
+
+    <div class="flyer-container">
+        <!-- VORDERSEITE -->
+        <div class="flyer-wrapper">
+            <div class="flyer-label">📄 Vorderseite (Front)</div>
+            <div class="flyer flyer-front">
+                <!-- Header -->
+                <div class="flyer-header">
+                    <div class="flyer-logo">
+                        <div class="flyer-logo-icon">
+                            <svg viewBox="0 0 30 40">
+                                <path d="M15 0 C5 10, 0 20, 15 40 C30 20, 25 10, 15 0" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="flyer-logo-text">
+                            <h2>Toni Janis</h2>
+                            <span>Garten- und Landschaftsbau</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Content -->
+                <div class="flyer-hero">
+                    <svg class="leaf-deco left" viewBox="0 0 100 150">
+                        <path d="M50 0 C10 30, 0 70, 50 150 C100 70, 90 30, 50 0" fill="#2E5A3C"/>
+                    </svg>
+                    <svg class="leaf-deco right" viewBox="0 0 100 150">
+                        <path d="M50 0 C10 30, 0 70, 50 150 C100 70, 90 30, 50 0" fill="#4A7C59"/>
+                    </svg>
+                    
+                    <div class="flyer-badge">🌿 Ihr Gartenspezialist</div>
+                    <h1>Wir verwandeln Ihren Garten in eine <span>grüne Oase</span></h1>
+                    <p>Professioneller Garten- und Landschaftsbau mit Leidenschaft in Delmenhorst und Umgebung.</p>
+                </div>
+
+                <!-- Services Strip -->
+                <div class="flyer-services">
+                    <div class="flyer-service-item">
+                        <div class="icon">🌳</div>
+                        <span>Garten-<br>gestaltung</span>
+                    </div>
+                    <div class="flyer-service-item">
+                        <div class="icon">🌿</div>
+                        <span>Garten-<br>pflege</span>
+                    </div>
+                    <div class="flyer-service-item">
+                        <div class="icon">🧱</div>
+                        <span>Pflaster-<br>arbeiten</span>
+                    </div>
+                    <div class="flyer-service-item">
+                        <div class="icon">🚜</div>
+                        <span>Rollrasen</span>
+                    </div>
+                    <div class="flyer-service-item">
+                        <div class="icon">🏠</div>
+                        <span>Zaunbau</span>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="flyer-cta">
+                    <div class="flyer-cta-text">
+                        <strong>Kostenlose Beratung!</strong>
+                        <span>Jetzt anrufen</span>
+                    </div>
+                    <div class="flyer-cta-phone">0176 343 26549</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RÜCKSEITE -->
+        <div class="flyer-wrapper">
+            <div class="flyer-label">📄 Rückseite (Back)</div>
+            <div class="flyer flyer-back">
+                <!-- Header -->
+                <div class="flyer-back-header">
+                    <h2>Unsere Leistungen für Sie</h2>
+                    <p>Alles aus einer Hand – von der Planung bis zur Pflege</p>
+                </div>
+
+                <!-- Services List -->
+                <div class="services-list">
+                    <div class="service-item">
+                        <div class="icon">🌳</div>
+                        <h4>Gartengestaltung</h4>
+                        <p>Kreative Planung und Umsetzung Ihrer Gartenträume</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="icon">🌿</div>
+                        <h4>Gartenpflege</h4>
+                        <p>Regelmäßige Pflege, auch im praktischen Abo</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="icon">🧱</div>
+                        <h4>Pflasterarbeiten</h4>
+                        <p>Terrassen, Wege und Einfahrten professionell</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="icon">🚜</div>
+                        <h4>Rollrasen</h4>
+                        <p>Schnell zum perfekten grünen Rasen</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="icon">🏠</div>
+                        <h4>Zaunbau</h4>
+                        <p>Hochwertige Zäune für mehr Privatsphäre</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="icon">❄️</div>
+                        <h4>Winterdienst</h4>
+                        <p>Zuverlässig durch die kalte Jahreszeit</p>
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="contact-section">
+                    <h3>📞 So erreichen Sie uns</h3>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <div class="icon">📞</div>
+                            <span>0176 343 26549<br>0176 878 29995</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon">✉️</div>
+                            <span>toni-janis@<br>hotmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon">📍</div>
+                            <span>Düsternort Str. 104<br>27755 Delmenhorst</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon">💬</div>
+                            <span>WhatsApp<br>Nachricht senden</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="flyer-back-footer">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <svg viewBox="0 0 30 40" width="20" height="25">
+                                <path d="M15 0 C5 10, 0 20, 15 40 C30 20, 25 10, 15 0" fill="white"/>
+                            </svg>
+                        </div>
+                        <span>Toni Janis</span>
+                    </div>
+                    <div class="qr-placeholder">QR<br>Code</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Color Palette -->
+    <div class="info-box" style="margin-top: 40px;">
+        <h2>🎨 Farbpalette für Canva</h2>
+        <p>Kopieren Sie diese Hex-Codes direkt in Canva:</p>
+        <div class="color-palette">
+            <div class="color-swatch">
+                <div class="swatch" style="background: #2E5A3C;"></div>
+                <span>Forest Green</span>
+                <code>#2E5A3C</code>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #4A7C59;"></div>
+                <span>Leaf Green</span>
+                <code>#4A7C59</code>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #7CB342;"></div>
+                <span>Lime Accent</span>
+                <code>#7CB342</code>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #5D4037;"></div>
+                <span>Earth Brown</span>
+                <code>#5D4037</code>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #E8E0D5;"></div>
+                <span>Sand Beige</span>
+                <code>#E8E0D5</code>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #FAF8F5;"></div>
+                <span>Cream</span>
+                <code>#FAF8F5</code>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>📝 Instructions pour Canva</h2>
+        <p>
+            <strong>1.</strong> Ouvrez Canva et créez un design personnalisé (154 × 216 mm pour A5 avec fond perdu)<br>
+            <strong>2.</strong> Utilisez les couleurs ci-dessus en les copiant dans la palette personnalisée<br>
+            <strong>3.</strong> Téléchargez les polices Playfair Display et Source Sans Pro depuis Google Fonts<br>
+            <strong>4.</strong> Recréez la mise en page en utilisant ce template comme référence<br>
+            <strong>5.</strong> Ajoutez des photos réelles des projets de Toni Janis<br>
+            <strong>6.</strong> Générez un QR code (gratuit sur qr-code-generator.com) vers WhatsApp ou le site web<br>
+            <strong>7.</strong> Exportez en PDF (pour impression) ou PNG haute résolution
+        </p>
+    </div>
+</body>
+</html>

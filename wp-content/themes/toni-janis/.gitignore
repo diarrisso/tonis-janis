@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Build output (optional: remove if you want to commit dist)
+# assets/dist/
+
+# SASS compiled output
+assets/src/scss/compiled/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+
+# WordPress
+wp-config.php
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/cache/
+wp-content/debug.log
