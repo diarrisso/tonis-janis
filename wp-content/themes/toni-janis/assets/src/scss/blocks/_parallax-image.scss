@@ -1,0 +1,8 @@
+@use '../variables' as *;
+
+.block-parallax-image {
+    // Fix for iOS where background-attachment: fixed doesn't work
+    @supports (-webkit-overflow-scrolling: touch) {
+        background-attachment: scroll !important;
+    }
+}

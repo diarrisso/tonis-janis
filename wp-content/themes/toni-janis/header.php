@@ -22,6 +22,12 @@
 
     <header id="site-header" class="site-header sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300" x-data="{ mobileOpen: false, scrolled: false }" @scroll.window="scrolled = (window.scrollY > 50)">
         <div class="container mx-auto px-4">
+            <?php
+            $cta_primary_text = toja_option('header_cta_primary_text', 'Angebote');
+            $cta_primary_url  = toja_option('header_cta_primary_url', home_url('/angebote'));
+            $cta_secondary_text = toja_option('header_cta_secondary_text', 'Termin buchen');
+            $cta_secondary_url  = toja_option('header_cta_secondary_url', home_url('/termin'));
+            ?>
             <div class="flex items-center justify-between" :class="scrolled ? 'h-16' : 'h-20'" style="transition: height 0.3s ease;">
                 <!-- Logo -->
                 <div class="site-branding flex-shrink-0">
@@ -45,9 +51,35 @@
                         'depth'          => 2,
                     ]);
                     ?>
-                    <a href="<?php echo esc_url(home_url('/kontakt')); ?>" class="btn-primary inline-flex items-center px-5 py-2.5 bg-kiwi-green text-white font-semibold rounded-lg hover:bg-kiwi-dark transition-colors">
-                        <?php esc_html_e('Kontakt', 'toni-janis'); ?>
-                    </a>
+                    <!-- Dark Mode Toggle -->
+                    <button
+                        @click="$store.darkMode.toggle()"
+                        class="p-2 rounded-lg text-earth-brown/60 hover:text-earth-brown hover:bg-gray-100 transition-colors"
+                        aria-label="<?php esc_attr_e('Dark Mode umschalten', 'toni-janis'); ?>"
+                    >
+                        <template x-if="!$store.darkMode.on">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                                <path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.07 7.07l-1.41-1.41M6.34 6.34L4.93 4.93m12.73 0l-1.41 1.41M6.34 17.66l-1.41 1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </template>
+                        <template x-if="$store.darkMode.on">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                            </svg>
+                        </template>
+                    </button>
+
+                    <?php if ($cta_primary_text) : ?>
+                        <a href="<?php echo esc_url($cta_primary_url); ?>" class="inline-flex items-center px-5 py-2.5 border-2 border-kiwi-green text-kiwi-green font-semibold rounded-lg hover:bg-kiwi-green hover:text-white transition-colors">
+                            <?php echo esc_html($cta_primary_text); ?>
+                        </a>
+                    <?php endif; ?>
+                    <?php if ($cta_secondary_text) : ?>
+                        <a href="<?php echo esc_url($cta_secondary_url); ?>" class="inline-flex items-center px-5 py-2.5 bg-kiwi-green text-white font-semibold rounded-lg hover:bg-kiwi-dark transition-colors">
+                            <?php echo esc_html($cta_secondary_text); ?>
+                        </a>
+                    <?php endif; ?>
                 </nav>
 
                 <!-- Mobile Menu Button -->
@@ -74,9 +106,40 @@
                     'depth'          => 2,
                 ]);
                 ?>
-                <a href="<?php echo esc_url(home_url('/kontakt')); ?>" class="mt-4 btn-primary text-center block px-5 py-3 bg-kiwi-green text-white font-semibold rounded-lg hover:bg-kiwi-dark transition-colors">
-                    <?php esc_html_e('Kontakt', 'toni-janis'); ?>
-                </a>
+                <!-- Dark Mode Toggle (Mobile) -->
+                <div class="flex items-center gap-3 mt-4 pb-3 border-b border-gray-100">
+                    <button
+                        @click="$store.darkMode.toggle()"
+                        class="p-2 rounded-lg text-earth-brown/60 hover:text-earth-brown hover:bg-gray-100 transition-colors"
+                        aria-label="<?php esc_attr_e('Dark Mode umschalten', 'toni-janis'); ?>"
+                    >
+                        <template x-if="!$store.darkMode.on">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                                <path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.07 7.07l-1.41-1.41M6.34 6.34L4.93 4.93m12.73 0l-1.41 1.41M6.34 17.66l-1.41 1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </template>
+                        <template x-if="$store.darkMode.on">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                            </svg>
+                        </template>
+                    </button>
+                    <span class="text-sm text-earth-brown/60"><?php esc_html_e('Dark Mode', 'toni-janis'); ?></span>
+                </div>
+
+                <div class="flex flex-col gap-3 mt-4">
+                    <?php if ($cta_primary_text) : ?>
+                        <a href="<?php echo esc_url($cta_primary_url); ?>" class="text-center block px-5 py-3 border-2 border-kiwi-green text-kiwi-green font-semibold rounded-lg hover:bg-kiwi-green hover:text-white transition-colors">
+                            <?php echo esc_html($cta_primary_text); ?>
+                        </a>
+                    <?php endif; ?>
+                    <?php if ($cta_secondary_text) : ?>
+                        <a href="<?php echo esc_url($cta_secondary_url); ?>" class="text-center block px-5 py-3 bg-kiwi-green text-white font-semibold rounded-lg hover:bg-kiwi-dark transition-colors">
+                            <?php echo esc_html($cta_secondary_text); ?>
+                        </a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </header>

@@ -3,10 +3,25 @@
 // ==========================================================================
 //
 // Import block-specific SCSS files here.
-// Each block should have its own file matching the block directory name.
-//
-// Example:
-// @import 'hero';
-// @import 'services';
-// @import 'testimonials';
-// @import 'contact';
+// Each block has its own file matching the block directory name.
+
+@use 'hero';
+@use 'services';
+@use 'about';
+@use 'passion';
+@use 'process';
+@use 'quality';
+@use 'equipment';
+@use 'blog-tips';
+@use 'projects';
+@use 'faq';
+@use 'entsorgen';
+@use 'gallery';
+@use 'before-after';
+@use 'video';
+@use 'testimonials';
+@use 'appointment';
+@use 'quote';
+@use 'karriere';
+@use 'contact';
+@use 'parallax-image';

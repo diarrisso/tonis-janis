@@ -63,3 +63,18 @@ img {
 [x-cloak] {
     display: none !important;
 }
+
+// Dark Mode
+html.dark {
+    body {
+        background-color: #1a1a2e;
+        color: #e0e0e0;
+    }
+
+    .bg-cream { background-color: #1a1a2e; }
+    .bg-white { background-color: #16213e; }
+    .text-earth-brown { color: #e0e0e0; }
+    .text-charcoal { color: #f0f0f0; }
+    .site-header { background-color: rgba(22, 33, 62, 0.95) !important; }
+    .site-footer { background: linear-gradient(to bottom, #0d1117, #010409); }
+}

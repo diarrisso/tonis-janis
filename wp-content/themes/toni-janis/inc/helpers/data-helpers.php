@@ -28,7 +28,7 @@ function toja_phone_href($number) {
 /**
  * Get WhatsApp link
  */
-function toja_whatsapp_link($number = '4917634326549', $message = '') {
+function toja_whatsapp_link($number = '', $message = '') {
     $url = 'https://wa.me/' . $number;
     if ($message) {
         $url .= '?text=' . rawurlencode($message);
@@ -52,11 +52,11 @@ function toja_truncate($text, $length = 150, $suffix = '...') {
  */
 function toja_contact_info() {
     return [
-        'company' => 'Toni Janis Garten- und Landschaftsbau',
-        'address' => 'Düsternort Str. 104, 27755 Delmenhorst',
-        'phone1'  => '0176 343 26549',
-        'phone2'  => '0176 878 29995',
-        'email'   => 'toni-janis@hotmail.com',
-        'whatsapp' => 'https://wa.me/4917634326549',
+        'company'  => toja_option('footer_company', ''),
+        'address'  => toja_option('footer_address', ''),
+        'phone1'   => toja_option('footer_phone', ''),
+        'phone2'   => toja_option('footer_phone2', ''),
+        'email'    => toja_option('footer_email', ''),
+        'whatsapp' => toja_whatsapp_link(toja_option('footer_whatsapp', '')),
     ];
 }
