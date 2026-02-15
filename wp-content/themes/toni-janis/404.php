@@ -17,7 +17,7 @@ get_header();
         <p class="text-gray-600 mb-8 max-w-md mx-auto">
             <?php esc_html_e('Die gesuchte Seite existiert leider nicht. Vielleicht finden Sie hier, was Sie suchen:', 'toni-janis'); ?>
         </p>
-        <a href="<?php echo esc_url(home_url('/')); ?>" class="inline-flex items-center gap-2 bg-kiwi-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-kiwi-dark transition-colors">
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="inline-flex items-center gap-2 bg-kiwi-green text-white px-6 py-3 rounded-full font-semibold hover:bg-kiwi-dark transition-colors">
             <?php esc_html_e('Zur Startseite', 'toni-janis'); ?>
         </a>
     </div>

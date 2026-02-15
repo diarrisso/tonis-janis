@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Swiper.js Styles */
-@import 'swiper/css';
-@import 'swiper/css/navigation';
-@import 'swiper/css/pagination';
-@import 'swiper/css/effect-fade';
-
-/* Import SASS compiled styles */
-@import '../scss/compiled/styles.css';
-
 @layer base {
     html {
         scroll-behavior: smooth;
@@ -27,19 +18,19 @@
 
 @layer components {
     .container {
-        @apply max-w-7xl mx-auto;
+        @apply max-w-[1400px] mx-auto;
     }
 
     .btn-primary {
-        @apply inline-flex items-center justify-center px-6 py-3 bg-kiwi-green text-white font-semibold rounded-lg hover:bg-kiwi-dark transition-all duration-300;
+        @apply inline-flex items-center justify-center px-6 py-3 bg-kiwi-green text-white font-semibold rounded-full hover:bg-kiwi-dark transition-all duration-300;
     }
 
     .btn-secondary {
-        @apply inline-flex items-center justify-center px-6 py-3 bg-earth-brown text-white font-semibold rounded-lg hover:bg-earth-brown/90 transition-all duration-300;
+        @apply inline-flex items-center justify-center px-6 py-3 bg-earth-brown text-white font-semibold rounded-full hover:bg-earth-brown/90 transition-all duration-300;
     }
 
     .btn-outline {
-        @apply inline-flex items-center justify-center px-6 py-3 border-2 border-kiwi-green text-kiwi-green font-semibold rounded-lg hover:bg-kiwi-green hover:text-white transition-all duration-300;
+        @apply inline-flex items-center justify-center px-6 py-3 border-2 border-kiwi-green text-kiwi-green font-semibold rounded-full hover:bg-kiwi-green hover:text-white transition-all duration-300;
     }
 
     .prose a {

@@ -19,97 +19,80 @@ $erfahrung_zahl = get_sub_field('about_erfahrung_zahl');
 $erfahrung_text = get_sub_field('about_erfahrung_text');
 $features       = get_sub_field('about_features');
 $button         = get_sub_field('about_button');
-$bg_variant     = get_sub_field('background_variant') ?: 'cream';
-$spacing        = get_sub_field('block_spacing') ?: 'medium';
 $block_id       = toja_block_id('about');
 ?>
 
-<section
-    id="<?php echo esc_attr($block_id); ?>"
-    class="<?php echo esc_attr(toja_block_classes('about')); ?> <?php echo esc_attr(toja_bg_class($bg_variant)); ?> <?php echo esc_attr(toja_spacing_class($spacing)); ?>"
->
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center max-w-6xl mx-auto">
-            <!-- Image Column -->
-            <div class="relative">
-                <?php if ($bild) : ?>
-                    <div class="relative">
-                        <div class="overflow-hidden rounded-3xl">
-                            <?php toja_image($bild, 'large', [
-                                'class' => 'w-full h-auto object-cover',
-                            ]); ?>
-                        </div>
+<section class="about" id="<?php echo esc_attr($block_id); ?>">
+    <div class="about-container">
+        <!-- Image Column -->
+        <div class="about-image">
+            <?php if ($bild) : ?>
+                <div class="about-image-main">
+                    <?php toja_image($bild, 'large', [
+                        'alt' => $heading ? $heading : 'Über uns',
+                    ]); ?>
+                </div>
 
-                        <!-- Experience Badge -->
-                        <?php if ($erfahrung_zahl || $erfahrung_text) : ?>
-                            <div class="absolute -bottom-6 -right-6 w-36 h-36 bg-white rounded-full shadow-xl flex flex-col items-center justify-center">
-                                <?php if ($erfahrung_zahl) : ?>
-                                    <strong class="font-heading text-4xl text-kiwi-dark leading-none">
-                                        <?php echo esc_html($erfahrung_zahl); ?>
-                                    </strong>
-                                <?php endif; ?>
-                                <?php if ($erfahrung_text) : ?>
-                                    <span class="text-sm text-earth-brown text-center mt-1">
-                                        <?php echo esc_html($erfahrung_text); ?>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
+                <?php if ($erfahrung_zahl || $erfahrung_text) : ?>
+                    <div class="experience-badge">
+                        <?php if ($erfahrung_zahl) : ?>
+                            <strong><?php echo esc_html($erfahrung_zahl); ?></strong>
+                        <?php endif; ?>
+                        <?php if ($erfahrung_text) : ?>
+                            <span><?php echo wp_kses_post($erfahrung_text); ?></span>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
-            </div>
+            <?php endif; ?>
+        </div>
 
-            <!-- Content Column -->
-            <div>
-                <?php if ($label) : ?>
-                    <span class="inline-block text-sm uppercase tracking-widest text-kiwi-accent font-semibold mb-4">
-                        <?php echo esc_html($label); ?>
-                    </span>
-                <?php endif; ?>
+        <!-- Content Column -->
+        <div class="about-content">
+            <?php if ($label) : ?>
+                <span class="section-label"><?php echo esc_html($label); ?></span>
+            <?php endif; ?>
 
-                <?php if ($heading) : ?>
-                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-kiwi-dark mb-6 leading-tight">
-                        <?php echo esc_html($heading); ?>
-                    </h2>
-                <?php endif; ?>
+            <?php if ($heading) : ?>
+                <h2><?php echo esc_html($heading); ?></h2>
+            <?php endif; ?>
 
-                <?php if ($texte) : ?>
-                    <div class="prose prose-lg text-earth-brown mb-8 max-w-none">
-                        <?php echo wp_kses_post($texte); ?>
-                    </div>
-                <?php endif; ?>
+            <?php if ($texte) : ?>
+                <?php echo wp_kses_post($texte); ?>
+            <?php endif; ?>
 
-                <!-- Features List -->
-                <?php if ($features) : ?>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                        <?php foreach ($features as $feature) :
-                            $icon = $feature['feature_icon'] ?? '✓';
-                            $feat_text = $feature['feature_text'] ?? '';
-                        ?>
-                            <?php if ($feat_text) : ?>
-                                <div class="flex items-center gap-3">
-                                    <span class="flex-shrink-0 w-8 h-8 bg-kiwi-green/10 text-kiwi-dark rounded-full flex items-center justify-center font-bold text-sm">
-                                        <?php echo esc_html($icon); ?>
-                                    </span>
-                                    <span class="text-earth-brown font-medium">
-                                        <?php echo esc_html($feat_text); ?>
-                                    </span>
+            <?php if ($features) : ?>
+                <div class="about-features">
+                    <?php foreach ($features as $feature) :
+                        $icon       = $feature['feature_icon'] ?? '✓';
+                        $feat_titel = $feature['feature_titel'] ?? '';
+                        $feat_text  = $feature['feature_text'] ?? '';
+                    ?>
+                        <?php if ($feat_titel || $feat_text) : ?>
+                            <div class="about-feature">
+                                <div class="about-feature-icon"><?php echo esc_html($icon); ?></div>
+                                <div class="about-feature-text">
+                                    <?php if ($feat_titel) : ?>
+                                        <strong><?php echo esc_html($feat_titel); ?></strong>
+                                    <?php endif; ?>
+                                    <?php if ($feat_text) : ?>
+                                        <span><?php echo esc_html($feat_text); ?></span>
+                                    <?php endif; ?>
                                 </div>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
 
-                <?php if ($button) : ?>
-                    <div>
-                        <?php toja_component('button', [
-                            'link'    => $button,
-                            'variant' => 'primary',
-                            'size'    => 'lg',
-                        ]); ?>
-                    </div>
-                <?php endif; ?>
-            </div>
+            <?php if ($button) :
+                $btn_url   = $button['url'] ?? '#';
+                $btn_title = $button['title'] ?? 'Jetzt Beratung anfragen';
+                $btn_target = $button['target'] ?? '';
+            ?>
+                <a href="<?php echo esc_url($btn_url); ?>" class="btn btn-primary"<?php echo $btn_target ? ' target="' . esc_attr($btn_target) . '" rel="noopener noreferrer"' : ''; ?>>
+                    <?php echo esc_html($btn_title); ?> <span>&rarr;</span>
+                </a>
+            <?php endif; ?>
         </div>
     </div>
 </section>

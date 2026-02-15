@@ -47,11 +47,22 @@ add_action('after_setup_theme', 'toja_setup');
  * Enqueue scripts and styles
  */
 function toja_enqueue_assets() {
+    // Swiper CSS
+    $swiper_file = TOJA_DIR . '/assets/dist/swiper.css';
+    if (file_exists($swiper_file)) {
+        wp_enqueue_style(
+            'toja-swiper',
+            TOJA_URI . '/assets/dist/swiper.css',
+            [],
+            TOJA_VERSION
+        );
+    }
+
     // Main stylesheet (TailwindCSS compiled)
     wp_enqueue_style(
         'toja-main',
         TOJA_URI . '/assets/dist/main.css',
-        [],
+        ['toja-swiper'],
         TOJA_VERSION
     );
 
@@ -61,6 +72,17 @@ function toja_enqueue_assets() {
         wp_enqueue_style(
             'toja-sass',
             TOJA_URI . '/assets/src/scss/compiled/styles.css',
+            ['toja-main'],
+            TOJA_VERSION
+        );
+    }
+
+    // Demo styles (1:1 from HTML demo)
+    $demo_file = TOJA_DIR . '/assets/dist/demo-styles.css';
+    if (file_exists($demo_file)) {
+        wp_enqueue_style(
+            'toja-demo',
+            TOJA_URI . '/assets/dist/demo-styles.css',
             ['toja-main'],
             TOJA_VERSION
         );

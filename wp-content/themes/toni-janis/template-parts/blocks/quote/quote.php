@@ -35,462 +35,295 @@ foreach ($services as $s) {
 }
 
 $steps = [
-    1 => __('Leistungen', 'toni-janis'),
-    2 => __('Projektdetails', 'toni-janis'),
+    1 => __('Leistung waehlen', 'toni-janis'),
+    2 => __('Details angeben', 'toni-janis'),
     3 => __('Kontaktdaten', 'toni-janis'),
 ];
 ?>
 
-<section
-    id="<?php echo esc_attr($block_id); ?>"
-    class="<?php echo esc_attr(toja_block_classes('quote', ['py-12 md:py-20'])); ?>"
->
-    <div class="container mx-auto px-4">
+<section class="quote-section" id="<?php echo esc_attr($block_id); ?>">
 
-        <!-- Section Header -->
-        <div class="text-center mb-12">
-            <?php if ($label) : ?>
-                <span class="inline-block text-kiwi-green font-semibold text-sm uppercase tracking-wider mb-2">
-                    <?php echo esc_html($label); ?>
-                </span>
-            <?php endif; ?>
+    <div class="section-header">
+        <?php if ($label) : ?>
+            <span class="section-label"><?php echo esc_html($label); ?></span>
+        <?php endif; ?>
 
-            <?php if ($heading) : ?>
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-earth-brown mb-4">
-                    <?php echo esc_html($heading); ?>
-                </h2>
-            <?php endif; ?>
+        <?php if ($heading) : ?>
+            <h2><?php echo esc_html($heading); ?></h2>
+        <?php endif; ?>
 
-            <?php if ($text) : ?>
-                <p class="text-earth-brown/70 max-w-2xl mx-auto">
-                    <?php echo esc_html($text); ?>
-                </p>
-            <?php endif; ?>
-        </div>
+        <?php if ($text) : ?>
+            <p><?php echo esc_html($text); ?></p>
+        <?php endif; ?>
+    </div>
 
-        <!-- 3-Step Form -->
-        <div
-            x-data="{
-                step: 1,
-                totalSteps: 3,
-                selectedServices: [],
-                details: {
-                    size: '',
-                    timeframe: '',
-                    description: ''
-                },
-                contact: {
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    phone: '',
-                    street: '',
-                    city: '',
-                    privacy: false
-                },
-                submitted: false,
-                submitting: false,
-                error: '',
-                services: <?php echo esc_attr(wp_json_encode($services_data)); ?>,
-                toggleService(titel) {
-                    const idx = this.selectedServices.indexOf(titel);
-                    if (idx > -1) {
-                        this.selectedServices.splice(idx, 1);
-                    } else {
-                        this.selectedServices.push(titel);
-                    }
-                },
-                isSelected(titel) {
-                    return this.selectedServices.includes(titel);
-                },
-                canProceed() {
-                    if (this.step === 1) return this.selectedServices.length > 0;
-                    if (this.step === 2) return true;
-                    if (this.step === 3) return this.contact.firstName && this.contact.lastName && this.contact.email && this.contact.phone && this.contact.privacy;
-                    return false;
-                },
-                nextStep() {
-                    if (this.canProceed() && this.step < this.totalSteps) {
-                        this.step++;
-                    }
-                },
-                prevStep() {
-                    if (this.step > 1) {
-                        this.step--;
-                    }
-                },
-                async submitForm() {
-                    if (this.submitting) return;
-                    this.submitting = true;
-                    this.error = '';
-
-                    try {
-                        const data = new FormData();
-                        data.append('action', 'toja_quote_request');
-                        data.append('nonce', tojaData.nonce);
-                        data.append('services', JSON.stringify(this.selectedServices));
-                        data.append('size', this.details.size);
-                        data.append('timeframe', this.details.timeframe);
-                        data.append('description', this.details.description);
-                        data.append('firstName', this.contact.firstName);
-                        data.append('lastName', this.contact.lastName);
-                        data.append('email', this.contact.email);
-                        data.append('phone', this.contact.phone);
-                        data.append('street', this.contact.street);
-                        data.append('city', this.contact.city);
-
-                        const response = await fetch(tojaData.ajaxUrl, {
-                            method: 'POST',
-                            body: data
-                        });
-
-                        const result = await response.json();
-
-                        if (result.success) {
-                            this.submitted = true;
-                        } else {
-                            this.error = result.data?.message || '<?php echo esc_js(__('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.', 'toni-janis')); ?>';
-                        }
-                    } catch (e) {
-                        this.error = '<?php echo esc_js(__('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.', 'toni-janis')); ?>';
-                    } finally {
-                        this.submitting = false;
-                    }
+    <div
+        x-data="{
+            step: 1,
+            totalSteps: 3,
+            selectedServices: [],
+            stepAnnouncement: '',
+            details: {
+                size: '',
+                timeframe: '',
+                description: ''
+            },
+            contact: {
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+                street: '',
+                city: '',
+                privacy: false
+            },
+            submitted: false,
+            submitting: false,
+            error: '',
+            services: <?php echo esc_attr(wp_json_encode($services_data)); ?>,
+            toggleService(titel) {
+                const idx = this.selectedServices.indexOf(titel);
+                if (idx > -1) {
+                    this.selectedServices.splice(idx, 1);
+                } else {
+                    this.selectedServices.push(titel);
                 }
-            }"
-            class="max-w-3xl mx-auto"
-        >
-            <!-- Success Message -->
-            <template x-if="submitted">
-                <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center">
-                    <div class="w-16 h-16 bg-kiwi-green/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-kiwi-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-heading text-2xl font-bold text-earth-brown mb-3">
-                        <?php esc_html_e('Vielen Dank für Ihre Anfrage!', 'toni-janis'); ?>
-                    </h3>
-                    <p class="text-earth-brown/70">
-                        <?php esc_html_e('Wir erstellen Ihr kostenloses Angebot und melden uns schnellstmöglich bei Ihnen.', 'toni-janis'); ?>
-                    </p>
+            },
+            isSelected(titel) {
+                return this.selectedServices.includes(titel);
+            },
+            canProceed() {
+                if (this.step === 1) return this.selectedServices.length > 0;
+                if (this.step === 2) return true;
+                if (this.step === 3) return this.contact.firstName && this.contact.lastName && this.contact.email && this.contact.phone && this.contact.privacy;
+                return false;
+            },
+            nextStep() {
+                if (this.canProceed() && this.step < this.totalSteps) {
+                    this.step++;
+                    this.stepAnnouncement = '<?php echo esc_js(__('Schritt', 'toni-janis')); ?> ' + this.step + ' <?php echo esc_js(__('von', 'toni-janis')); ?> ' + this.totalSteps;
+                }
+            },
+            prevStep() {
+                if (this.step > 1) {
+                    this.step--;
+                    this.stepAnnouncement = '<?php echo esc_js(__('Schritt', 'toni-janis')); ?> ' + this.step + ' <?php echo esc_js(__('von', 'toni-janis')); ?> ' + this.totalSteps;
+                }
+            },
+            async submitForm() {
+                if (this.submitting) return;
+                this.submitting = true;
+                this.error = '';
+
+                try {
+                    const data = new FormData();
+                    data.append('action', 'toja_quote_request');
+                    data.append('nonce', tojaData.nonce);
+                    data.append('services', JSON.stringify(this.selectedServices));
+                    data.append('size', this.details.size);
+                    data.append('timeframe', this.details.timeframe);
+                    data.append('description', this.details.description);
+                    data.append('firstName', this.contact.firstName);
+                    data.append('lastName', this.contact.lastName);
+                    data.append('email', this.contact.email);
+                    data.append('phone', this.contact.phone);
+                    data.append('street', this.contact.street);
+                    data.append('city', this.contact.city);
+
+                    const response = await fetch(tojaData.ajaxUrl, {
+                        method: 'POST',
+                        body: data
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        this.submitted = true;
+                    } else {
+                        this.error = result.data?.message || '<?php echo esc_js(__('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.', 'toni-janis')); ?>';
+                    }
+                } catch (e) {
+                    this.error = '<?php echo esc_js(__('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.', 'toni-janis')); ?>';
+                } finally {
+                    this.submitting = false;
+                }
+            }
+        }"
+        class="quote-container"
+    >
+        <!-- Live Region for Step Announcements -->
+        <div class="sr-only" aria-live="polite" aria-atomic="true" x-text="stepAnnouncement"></div>
+
+        <!-- Success Message -->
+        <template x-if="submitted">
+            <div class="quote-step" id="quoteSuccess" role="status" aria-live="polite">
+                <div class="success-message">
+                    <div class="success-icon">&#10003;</div>
+                    <h3><?php esc_html_e('Vielen Dank fuer Ihre Anfrage!', 'toni-janis'); ?></h3>
+                    <p><?php esc_html_e('Wir haben Ihre Anfrage erhalten und werden uns innerhalb von 24 Stunden bei Ihnen melden.', 'toni-janis'); ?></p>
                 </div>
-            </template>
+            </div>
+        </template>
 
-            <template x-if="!submitted">
-                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-10">
-
-                    <!-- Progress Bar -->
-                    <div class="mb-10">
-                        <div class="flex items-center justify-between mb-3">
-                            <?php foreach ($steps as $num => $step_label) : ?>
-                                <div class="flex flex-col items-center flex-1">
-                                    <div
-                                        :class="step >= <?php echo $num; ?> ? 'bg-kiwi-green text-white' : 'bg-gray-200 text-earth-brown/50'"
-                                        class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors duration-300"
-                                    >
-                                        <template x-if="step > <?php echo $num; ?>">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                            </svg>
-                                        </template>
-                                        <template x-if="step <= <?php echo $num; ?>">
-                                            <span><?php echo $num; ?></span>
-                                        </template>
-                                    </div>
-                                    <span
-                                        :class="step >= <?php echo $num; ?> ? 'text-kiwi-dark' : 'text-earth-brown/40'"
-                                        class="text-xs mt-1 hidden sm:block transition-colors duration-300"
-                                    >
-                                        <?php echo esc_html($step_label); ?>
-                                    </span>
-                                </div>
-                                <?php if ($num < 3) : ?>
-                                    <div
-                                        :class="step > <?php echo $num; ?> ? 'bg-kiwi-green' : 'bg-gray-200'"
-                                        class="flex-1 h-0.5 mx-2 transition-colors duration-300 self-start mt-4"
-                                    ></div>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
+        <template x-if="!submitted">
+            <div>
+                <!-- Progress Steps -->
+                <div class="quote-progress" role="list" aria-label="<?php esc_attr_e('Fortschritt', 'toni-janis'); ?>">
+                    <?php foreach ($steps as $num => $step_label) : ?>
+                        <div
+                            class="progress-step"
+                            :class="step >= <?php echo $num; ?> ? 'active' : ''"
+                            data-step="<?php echo $num; ?>"
+                            role="listitem"
+                            :aria-current="step === <?php echo $num; ?> ? 'step' : false"
+                        >
+                            <div class="step-number"><?php echo $num; ?></div>
+                            <span><?php echo esc_html($step_label); ?></span>
                         </div>
-                    </div>
+                        <?php if ($num < 3) : ?>
+                            <div class="progress-line" :class="step > <?php echo $num; ?> ? 'active' : ''"></div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
 
-                    <!-- Step 1: Service Selection -->
-                    <div x-show="step === 1" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-4" x-transition:enter-end="opacity-100 translate-x-0">
-                        <h3 class="font-heading text-xl font-bold text-earth-brown mb-2">
-                            <?php esc_html_e('Welche Leistungen benötigen Sie?', 'toni-janis'); ?>
-                        </h3>
-                        <p class="text-earth-brown/60 text-sm mb-6">
-                            <?php esc_html_e('Mehrfachauswahl möglich', 'toni-janis'); ?>
-                        </p>
+                <!-- Step 1: Service Selection -->
+                <div class="quote-step" :class="step === 1 ? 'active' : ''" x-show="step === 1" id="quoteStep1">
+                    <h3><?php esc_html_e('Welche Leistung benoetigen Sie?', 'toni-janis'); ?></h3>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <?php foreach ($services_data as $index => $service) : ?>
-                                <button
-                                    type="button"
-                                    @click="toggleService('<?php echo esc_js($service['titel']); ?>')"
-                                    :class="isSelected('<?php echo esc_js($service['titel']); ?>') ? 'border-kiwi-green bg-kiwi-green/5 ring-2 ring-kiwi-green/20' : 'border-gray-200 hover:border-kiwi-green/50'"
-                                    class="p-5 rounded-xl border-2 text-left transition-all duration-200 relative"
-                                >
-                                    <!-- Checkbox indicator -->
-                                    <div
-                                        :class="isSelected('<?php echo esc_js($service['titel']); ?>') ? 'bg-kiwi-green border-kiwi-green' : 'border-gray-300'"
-                                        class="absolute top-3 right-3 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors"
-                                    >
-                                        <svg
-                                            x-show="isSelected('<?php echo esc_js($service['titel']); ?>')"
-                                            class="w-3 h-3 text-white"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-                                        </svg>
-                                    </div>
-
-                                    <?php if (!empty($service['icon'])) : ?>
-                                        <div class="w-10 h-10 text-kiwi-green mb-3">
-                                            <?php echo $service['icon']; ?>
-                                        </div>
-                                    <?php endif; ?>
-
-                                    <?php if (!empty($service['titel'])) : ?>
-                                        <h4 class="font-bold text-earth-brown mb-1 pr-6">
-                                            <?php echo esc_html($service['titel']); ?>
-                                        </h4>
-                                    <?php endif; ?>
-
-                                    <?php if (!empty($service['beschreibung'])) : ?>
-                                        <p class="text-earth-brown/60 text-sm">
-                                            <?php echo esc_html($service['beschreibung']); ?>
-                                        </p>
-                                    <?php endif; ?>
-                                </button>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-
-                    <!-- Step 2: Project Details -->
-                    <div x-show="step === 2" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-4" x-transition:enter-end="opacity-100 translate-x-0">
-                        <h3 class="font-heading text-xl font-bold text-earth-brown mb-6">
-                            <?php esc_html_e('Projektdetails', 'toni-janis'); ?>
-                        </h3>
-
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-medium text-earth-brown mb-1">
-                                    <?php esc_html_e('Grundstücksgröße (ca. m²)', 'toni-janis'); ?>
-                                </label>
+                    <div class="service-selection">
+                        <?php foreach ($services_data as $index => $service) : ?>
+                            <label class="service-option">
                                 <input
-                                    type="text"
-                                    x-model="details.size"
-                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-kiwi-green focus:ring-2 focus:ring-kiwi-green/20 outline-none transition-colors"
-                                    placeholder="<?php esc_attr_e('z.B. 500 m²', 'toni-janis'); ?>"
+                                    type="checkbox"
+                                    name="service"
+                                    value="<?php echo esc_attr($service['titel']); ?>"
+                                    @change="toggleService('<?php echo esc_js($service['titel']); ?>')"
+                                    :checked="isSelected('<?php echo esc_js($service['titel']); ?>')"
                                 >
-                            </div>
+                                <div class="option-card">
+                                    <?php if (!empty($service['icon'])) : ?>
+                                        <span class="option-icon"><?php echo $service['icon']; ?></span>
+                                    <?php endif; ?>
+                                    <?php if (!empty($service['titel'])) : ?>
+                                        <span class="option-title"><?php echo esc_html($service['titel']); ?></span>
+                                    <?php endif; ?>
+                                    <?php if (!empty($service['beschreibung'])) : ?>
+                                        <span class="option-desc"><?php echo esc_html($service['beschreibung']); ?></span>
+                                    <?php endif; ?>
+                                </div>
+                            </label>
+                        <?php endforeach; ?>
+                    </div>
 
-                            <div>
-                                <label class="block text-sm font-medium text-earth-brown mb-1">
-                                    <?php esc_html_e('Gewünschter Zeitrahmen', 'toni-janis'); ?>
-                                </label>
-                                <select
-                                    x-model="details.timeframe"
-                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-kiwi-green focus:ring-2 focus:ring-kiwi-green/20 outline-none transition-colors bg-white"
-                                >
-                                    <option value=""><?php esc_html_e('Bitte wählen...', 'toni-janis'); ?></option>
-                                    <option value="sofort"><?php esc_html_e('So schnell wie möglich', 'toni-janis'); ?></option>
-                                    <option value="1-monat"><?php esc_html_e('Innerhalb 1 Monat', 'toni-janis'); ?></option>
-                                    <option value="3-monate"><?php esc_html_e('Innerhalb 3 Monaten', 'toni-janis'); ?></option>
-                                    <option value="6-monate"><?php esc_html_e('Innerhalb 6 Monaten', 'toni-janis'); ?></option>
-                                    <option value="flexibel"><?php esc_html_e('Flexibel', 'toni-janis'); ?></option>
+                    <button class="btn btn-primary quote-next" @click="nextStep()" :disabled="!canProceed()">
+                        <?php esc_html_e('Weiter', 'toni-janis'); ?> &rarr;
+                    </button>
+                </div>
+
+                <!-- Step 2: Project Details -->
+                <div class="quote-step" :class="step === 2 ? 'active' : ''" x-show="step === 2" id="quoteStep2">
+                    <h3><?php esc_html_e('Erzaehlen Sie uns mehr ueber Ihr Projekt', 'toni-janis'); ?></h3>
+
+                    <div class="details-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="<?php echo esc_attr($block_id); ?>-size"><?php esc_html_e('Grundstuecksgroesse (ca. m2)', 'toni-janis'); ?></label>
+                                <input id="<?php echo esc_attr($block_id); ?>-size" type="number" x-model="details.size" placeholder="<?php esc_attr_e('z.B. 500', 'toni-janis'); ?>" id="propertySize">
+                            </div>
+                            <div class="form-group">
+                                <label for="<?php echo esc_attr($block_id); ?>-timeframe"><?php esc_html_e('Gewuenschter Zeitraum', 'toni-janis'); ?></label>
+                                <select id="<?php echo esc_attr($block_id); ?>-timeframe" x-model="details.timeframe" id="timeframe">
+                                    <option value=""><?php esc_html_e('Bitte waehlen...', 'toni-janis'); ?></option>
+                                    <option value="asap"><?php esc_html_e('So schnell wie moeglich', 'toni-janis'); ?></option>
+                                    <option value="1month"><?php esc_html_e('Innerhalb 1 Monat', 'toni-janis'); ?></option>
+                                    <option value="3months"><?php esc_html_e('Innerhalb 3 Monate', 'toni-janis'); ?></option>
+                                    <option value="flexible"><?php esc_html_e('Flexibel', 'toni-janis'); ?></option>
                                 </select>
                             </div>
-
-                            <div>
-                                <label class="block text-sm font-medium text-earth-brown mb-1">
-                                    <?php esc_html_e('Projektbeschreibung', 'toni-janis'); ?>
-                                </label>
-                                <textarea
-                                    x-model="details.description"
-                                    rows="4"
-                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-kiwi-green focus:ring-2 focus:ring-kiwi-green/20 outline-none transition-colors resize-none"
-                                    placeholder="<?php esc_attr_e('Beschreiben Sie Ihr Projekt...', 'toni-janis'); ?>"
-                                ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="<?php echo esc_attr($block_id); ?>-description"><?php esc_html_e('Projektbeschreibung', 'toni-janis'); ?></label>
+                            <textarea id="<?php echo esc_attr($block_id); ?>-description" x-model="details.description" placeholder="<?php esc_attr_e('Beschreiben Sie Ihr Projekt so detailliert wie moeglich...', 'toni-janis'); ?>" id="projectDescription"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label><?php esc_html_e('Fotos hochladen (optional)', 'toni-janis'); ?></label>
+                            <div class="upload-area" id="uploadArea">
+                                <input type="file" id="projectPhotos" class="upload-input" multiple accept="image/*">
+                                <span class="upload-icon-large">&#128247;</span>
+                                <div class="upload-text"><?php esc_html_e('Bilder hochladen', 'toni-janis'); ?></div>
+                                <div class="upload-subtext"><?php esc_html_e('Klicken oder Bilder hierher ziehen', 'toni-janis'); ?></div>
+                                <div class="upload-formats"><?php esc_html_e('JPG, PNG, HEIC bis zu 5MB pro Bild (max. 10 Bilder)', 'toni-janis'); ?></div>
                             </div>
-
-                            <!-- File Upload Placeholder -->
-                            <div>
-                                <label class="block text-sm font-medium text-earth-brown mb-1">
-                                    <?php esc_html_e('Fotos hochladen (optional)', 'toni-janis'); ?>
-                                </label>
-                                <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-kiwi-green/50 transition-colors cursor-pointer">
-                                    <svg class="w-8 h-8 text-earth-brown/40 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                    </svg>
-                                    <p class="text-sm text-earth-brown/50">
-                                        <?php esc_html_e('Klicken Sie hier oder ziehen Sie Dateien hierher', 'toni-janis'); ?>
-                                    </p>
-                                    <p class="text-xs text-earth-brown/30 mt-1">
-                                        <?php esc_html_e('JPG, PNG bis 10 MB', 'toni-janis'); ?>
-                                    </p>
-                                </div>
-                            </div>
+                            <div id="imagePreviewGrid" class="image-preview-grid"></div>
+                            <div id="uploadCount" style="text-align: center;"></div>
                         </div>
                     </div>
 
-                    <!-- Step 3: Contact Info -->
-                    <div x-show="step === 3" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-4" x-transition:enter-end="opacity-100 translate-x-0">
-                        <h3 class="font-heading text-xl font-bold text-earth-brown mb-6">
-                            <?php esc_html_e('Ihre Kontaktdaten', 'toni-janis'); ?>
-                        </h3>
-
-                        <div class="space-y-4">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-earth-brown mb-1">
-                                        <?php esc_html_e('Vorname', 'toni-janis'); ?> *
-                                    </label>
-                                    <input
-                                        type="text"
-                                        x-model="contact.firstName"
-                                        required
-                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-kiwi-green focus:ring-2 focus:ring-kiwi-green/20 outline-none transition-colors"
-                                    >
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-earth-brown mb-1">
-                                        <?php esc_html_e('Nachname', 'toni-janis'); ?> *
-                                    </label>
-                                    <input
-                                        type="text"
-                                        x-model="contact.lastName"
-                                        required
-                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-kiwi-green focus:ring-2 focus:ring-kiwi-green/20 outline-none transition-colors"
-                                    >
-                                </div>
-                            </div>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-earth-brown mb-1">
-                                        <?php esc_html_e('E-Mail', 'toni-janis'); ?> *
-                                    </label>
-                                    <input
-                                        type="email"
-                                        x-model="contact.email"
-                                        required
-                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-kiwi-green focus:ring-2 focus:ring-kiwi-green/20 outline-none transition-colors"
-                                        placeholder="<?php esc_attr_e('ihre@email.de', 'toni-janis'); ?>"
-                                    >
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-earth-brown mb-1">
-                                        <?php esc_html_e('Telefon', 'toni-janis'); ?> *
-                                    </label>
-                                    <input
-                                        type="tel"
-                                        x-model="contact.phone"
-                                        required
-                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-kiwi-green focus:ring-2 focus:ring-kiwi-green/20 outline-none transition-colors"
-                                        placeholder="<?php esc_attr_e('0176 123 45678', 'toni-janis'); ?>"
-                                    >
-                                </div>
-                            </div>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-earth-brown mb-1">
-                                        <?php esc_html_e('Straße + Nr.', 'toni-janis'); ?>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        x-model="contact.street"
-                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-kiwi-green focus:ring-2 focus:ring-kiwi-green/20 outline-none transition-colors"
-                                    >
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-earth-brown mb-1">
-                                        <?php esc_html_e('PLZ + Ort', 'toni-janis'); ?>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        x-model="contact.city"
-                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-kiwi-green focus:ring-2 focus:ring-kiwi-green/20 outline-none transition-colors"
-                                    >
-                                </div>
-                            </div>
-
-                            <!-- Privacy Checkbox -->
-                            <div class="pt-2">
-                                <label class="flex items-start gap-3 cursor-pointer">
-                                    <input
-                                        type="checkbox"
-                                        x-model="contact.privacy"
-                                        class="mt-1 w-4 h-4 rounded border-gray-300 text-kiwi-green focus:ring-kiwi-green"
-                                    >
-                                    <span class="text-sm text-earth-brown/70">
-                                        <?php printf(
-                                            esc_html__('Ich habe die %sDatenschutzerklärung%s gelesen und stimme der Verarbeitung meiner Daten zu. *', 'toni-janis'),
-                                            '<a href="' . esc_url(get_privacy_policy_url()) . '" target="_blank" class="text-kiwi-green underline hover:text-kiwi-dark">',
-                                            '</a>'
-                                        ); ?>
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Error Message -->
-                        <template x-if="error">
-                            <div class="mt-4 p-3 bg-red-50 text-red-700 rounded-xl text-sm" x-text="error"></div>
-                        </template>
-                    </div>
-
-                    <!-- Navigation Buttons -->
-                    <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
-                        <button
-                            type="button"
-                            @click="prevStep()"
-                            x-show="step > 1"
-                            class="px-6 py-3 text-earth-brown font-medium rounded-xl hover:bg-gray-100 transition-colors"
-                        >
-                            <?php esc_html_e('Zurück', 'toni-janis'); ?>
-                        </button>
-
-                        <div x-show="step === 1"></div>
-
-                        <template x-if="step < totalSteps">
-                            <button
-                                type="button"
-                                @click="nextStep()"
-                                :disabled="!canProceed()"
-                                :class="canProceed() ? 'bg-kiwi-green hover:bg-kiwi-dark text-white' : 'bg-gray-200 text-gray-400 cursor-not-allowed'"
-                                class="px-8 py-3 font-semibold rounded-xl transition-colors duration-200"
-                            >
-                                <?php esc_html_e('Weiter', 'toni-janis'); ?>
-                            </button>
-                        </template>
-
-                        <template x-if="step === totalSteps">
-                            <button
-                                type="button"
-                                @click="submitForm()"
-                                :disabled="!canProceed() || submitting"
-                                :class="canProceed() && !submitting ? 'bg-kiwi-green hover:bg-kiwi-dark text-white' : 'bg-gray-200 text-gray-400 cursor-not-allowed'"
-                                class="px-8 py-3 font-semibold rounded-xl transition-colors duration-200"
-                            >
-                                <span x-show="!submitting"><?php esc_html_e('Angebot anfordern', 'toni-janis'); ?></span>
-                                <span x-show="submitting" class="flex items-center gap-2">
-                                    <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                                    </svg>
-                                    <?php esc_html_e('Wird gesendet...', 'toni-janis'); ?>
-                                </span>
-                            </button>
-                        </template>
+                    <div class="quote-buttons">
+                        <button class="btn btn-secondary" @click="prevStep()">&larr; <?php esc_html_e('Zurueck', 'toni-janis'); ?></button>
+                        <button class="btn btn-primary" @click="nextStep()"><?php esc_html_e('Weiter', 'toni-janis'); ?> &rarr;</button>
                     </div>
                 </div>
-            </template>
-        </div>
+
+                <!-- Step 3: Contact Information -->
+                <div class="quote-step" :class="step === 3 ? 'active' : ''" x-show="step === 3" id="quoteStep3">
+                    <h3><?php esc_html_e('Ihre Kontaktdaten', 'toni-janis'); ?></h3>
+
+                    <div class="details-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="<?php echo esc_attr($block_id); ?>-firstName"><?php esc_html_e('Vorname', 'toni-janis'); ?> *</label>
+                                <input id="<?php echo esc_attr($block_id); ?>-firstName" type="text" x-model="contact.firstName" placeholder="<?php esc_attr_e('Ihr Vorname', 'toni-janis'); ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="<?php echo esc_attr($block_id); ?>-lastName"><?php esc_html_e('Nachname', 'toni-janis'); ?> *</label>
+                                <input id="<?php echo esc_attr($block_id); ?>-lastName" type="text" x-model="contact.lastName" placeholder="<?php esc_attr_e('Ihr Nachname', 'toni-janis'); ?>" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="<?php echo esc_attr($block_id); ?>-email"><?php esc_html_e('E-Mail', 'toni-janis'); ?> *</label>
+                                <input id="<?php echo esc_attr($block_id); ?>-email" type="email" x-model="contact.email" placeholder="<?php esc_attr_e('ihre@email.de', 'toni-janis'); ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="<?php echo esc_attr($block_id); ?>-phone"><?php esc_html_e('Telefon', 'toni-janis'); ?> *</label>
+                                <input id="<?php echo esc_attr($block_id); ?>-phone" type="tel" x-model="contact.phone" placeholder="<?php esc_attr_e('0176 123 45678', 'toni-janis'); ?>" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="<?php echo esc_attr($block_id); ?>-street"><?php esc_html_e('Strasse & Hausnummer', 'toni-janis'); ?> *</label>
+                                <input id="<?php echo esc_attr($block_id); ?>-street" type="text" x-model="contact.street" placeholder="<?php esc_attr_e('Musterstrasse 123', 'toni-janis'); ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="<?php echo esc_attr($block_id); ?>-city"><?php esc_html_e('PLZ & Ort', 'toni-janis'); ?> *</label>
+                                <input id="<?php echo esc_attr($block_id); ?>-city" type="text" x-model="contact.city" placeholder="<?php esc_attr_e('27755 Delmenhorst', 'toni-janis'); ?>">
+                            </div>
+                        </div>
+                        <label class="checkbox-label">
+                            <input type="checkbox" x-model="contact.privacy" id="quotePrivacy" required>
+                            <span><?php printf(
+                                esc_html__('Ich stimme der %sDatenschutzerklaerung%s zu *', 'toni-janis'),
+                                '<a href="' . esc_url(get_privacy_policy_url()) . '" target="_blank" rel="noopener noreferrer">',
+                                '</a>'
+                            ); ?></span>
+                        </label>
+                    </div>
+
+                    <!-- Error Message -->
+                    <template x-if="error">
+                        <div role="alert" x-text="error" style="color: red; margin-top: 1rem;"></div>
+                    </template>
+
+                    <div class="quote-buttons">
+                        <button class="btn btn-secondary" @click="prevStep()">&larr; <?php esc_html_e('Zurueck', 'toni-janis'); ?></button>
+                        <button class="btn btn-primary" @click="submitForm()" :disabled="!canProceed() || submitting">
+                            <span x-show="!submitting"><?php esc_html_e('Angebot anfordern', 'toni-janis'); ?> &#10003;</span>
+                            <span x-show="submitting"><?php esc_html_e('Wird gesendet...', 'toni-janis'); ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </template>
     </div>
 </section>

@@ -35,7 +35,7 @@ $sizes = [
 ];
 
 $btn_class = toja_classes(
-    'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-300',
+    'inline-flex items-center justify-center font-semibold rounded-full transition-all duration-300',
     $variants[$variant] ?? $variants['primary'],
     $sizes[$size] ?? $sizes['md'],
     $class

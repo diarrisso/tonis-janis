@@ -18,10 +18,8 @@ if (!$is_enabled) {
 }
 
 // Hole Daten aus den Theme-Optionen
-$message = get_field('consent_banner_message', 'option');
-$position = get_field('consent_banner_position', 'option') ?: 'bottom';
-$bg_color = get_field('consent_banner_bg_color', 'option') ?: 'white';
-$text_color = get_field('consent_banner_text_color', 'option') ?: 'earth-brown';
+$message      = get_field('consent_banner_message', 'option');
+$position     = get_field('consent_banner_position', 'option') ?: 'bottom';
 $storage_days = get_field('consent_banner_storage_days', 'option') ?: 30;
 
 // Wenn keine Nachricht vorhanden ist, nichts anzeigen
@@ -29,40 +27,18 @@ if (empty($message)) {
     return;
 }
 
-// CSS-Klassen für Hintergrundfarbe
-$bg_classes = [
-    'white'     => 'bg-white',
-    'cream'     => 'bg-cream',
-    'kiwi'      => 'bg-kiwi-green',
-    'sand'      => 'bg-sand-beige',
-];
-
-// CSS-Klassen für Textfarbe
-$text_classes = [
-    'earth-brown' => 'text-earth-brown',
-    'charcoal'    => 'text-charcoal',
-    'white'       => 'text-white',
-];
-
-// CSS-Klassen für Position
-$position_classes = [
-    'bottom' => 'bottom-4',
-    'top'    => 'top-4',
-];
-
 // Erstelle eindeutige ID für localStorage
 $banner_id = 'toja-consent-banner';
-
 ?>
 
 <div
+    class="consent-banner consent-banner--<?php echo esc_attr($position); ?>"
     x-data="{
         show: false,
         storageKey: '<?php echo esc_js($banner_id); ?>',
         storageDays: <?php echo absint($storage_days); ?>,
 
         init() {
-            // Prüfe ob Banner bereits geschlossen wurde
             const closed = localStorage.getItem(this.storageKey);
             if (!closed) {
                 this.show = true;
@@ -71,7 +47,6 @@ $banner_id = 'toja-consent-banner';
 
         close() {
             this.show = false;
-            // Speichere Schließ-Datum
             const expiryDate = new Date();
             expiryDate.setDate(expiryDate.getDate() + this.storageDays);
             localStorage.setItem(this.storageKey, expiryDate.toISOString());
@@ -84,15 +59,14 @@ $banner_id = 'toja-consent-banner';
     x-transition:leave="transition ease-in duration-200"
     x-transition:leave-start="opacity-100 transform translate-y-0"
     x-transition:leave-end="opacity-0 transform translate-y-4"
-    class="fixed <?php echo esc_attr($position_classes[$position] ?? 'bottom-4'); ?> left-4 right-4 md:left-auto md:right-8 z-50 w-full max-w-xl"
     style="display: none;"
     x-cloak
+    role="dialog"
+    aria-label="<?php esc_attr_e('Cookie-Hinweis', 'toni-janis'); ?>"
 >
-    <div class="<?php echo esc_attr($bg_classes[$bg_color] ?? 'bg-white'); ?> <?php echo esc_attr($text_classes[$text_color] ?? 'text-earth-brown'); ?>
-                rounded-2xl shadow-xl px-5 py-4 md:px-6 md:py-4 flex items-center justify-between gap-4 border border-gray-100">
-
+    <div class="consent-banner__inner">
         <!-- Nachricht -->
-        <div class="flex-1 text-sm md:text-base leading-relaxed">
+        <div class="consent-banner__message">
             <?php echo wp_kses_post($message); ?>
         </div>
 
@@ -100,7 +74,7 @@ $banner_id = 'toja-consent-banner';
         <button
             @click="close()"
             type="button"
-            class="flex-shrink-0 px-4 py-2 bg-kiwi-green text-white text-sm font-semibold rounded-lg hover:bg-kiwi-dark transition-colors duration-200 cursor-pointer"
+            class="consent-banner__accept btn btn-primary"
         >
             <?php esc_html_e('OK', 'toni-janis'); ?>
         </button>
@@ -109,12 +83,11 @@ $banner_id = 'toja-consent-banner';
         <button
             @click="close()"
             type="button"
-            class="flex-shrink-0 w-8 h-8 flex items-center justify-center
-                   hover:bg-black/5 rounded-full transition-colors duration-200 cursor-pointer"
+            class="consent-banner__close"
             aria-label="<?php esc_attr_e('Banner schließen', 'toni-janis'); ?>"
         >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
             </svg>
         </button>
     </div>

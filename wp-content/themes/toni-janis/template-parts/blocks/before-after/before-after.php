@@ -55,158 +55,120 @@ foreach ($vergleiche as $v) {
 $total = count($projects_data);
 ?>
 
-<section
-    id="<?php echo esc_attr($block_id); ?>"
-    class="<?php echo esc_attr(toja_block_classes('before-after', ['py-12 md:py-20'])); ?>"
->
-    <div class="container mx-auto px-4">
+<section class="before-after" id="<?php echo esc_attr($block_id); ?>">
 
-        <!-- Section Header -->
-        <div class="text-center mb-12">
-            <?php if ($label) : ?>
-                <span class="inline-block text-kiwi-green font-semibold text-sm uppercase tracking-wider mb-2">
-                    <?php echo esc_html($label); ?>
-                </span>
-            <?php endif; ?>
+    <div class="section-header">
+        <?php if ($label) : ?>
+            <span class="section-label"><?php echo esc_html($label); ?></span>
+        <?php endif; ?>
 
-            <?php if ($heading) : ?>
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-earth-brown mb-4">
-                    <?php echo esc_html($heading); ?>
-                </h2>
-            <?php endif; ?>
+        <?php if ($heading) : ?>
+            <h2><?php echo esc_html($heading); ?></h2>
+        <?php endif; ?>
 
-            <?php if ($text) : ?>
-                <p class="text-earth-brown/70 max-w-2xl mx-auto">
-                    <?php echo esc_html($text); ?>
-                </p>
-            <?php endif; ?>
-        </div>
+        <?php if ($text) : ?>
+            <p><?php echo esc_html($text); ?></p>
+        <?php endif; ?>
+    </div>
 
-        <!-- Comparison Slider -->
-        <div
-            x-data="{
-                position: 50,
-                dragging: false,
-                current: 0,
-                projects: <?php echo esc_attr(wp_json_encode($projects_data)); ?>,
-                get project() {
-                    return this.projects[this.current] || this.projects[0];
-                },
-                startDrag(e) {
-                    this.dragging = true;
-                    e.preventDefault();
-                },
-                onDrag(e) {
-                    if (!this.dragging) return;
-                    const rect = this.$refs.slider.getBoundingClientRect();
-                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-                    const x = clientX - rect.left;
-                    this.position = Math.max(0, Math.min(100, (x / rect.width) * 100));
-                },
-                stopDrag() {
-                    this.dragging = false;
-                },
-                goTo(index) {
-                    this.current = index;
-                    this.position = 50;
-                }
-            }"
-            @mousemove.window="onDrag($event)"
-            @mouseup.window="stopDrag()"
-            @touchmove.window="onDrag($event)"
-            @touchend.window="stopDrag()"
-            class="max-w-4xl mx-auto"
-        >
-            <!-- Slider Container -->
-            <div
-                x-ref="slider"
-                class="relative overflow-hidden rounded-2xl shadow-xl cursor-col-resize select-none aspect-[16/10]"
-            >
-                <!-- After Image (Background) -->
-                <img
-                    :src="project.nachher"
-                    :alt="project.nachherAlt"
-                    class="absolute inset-0 w-full h-full object-cover"
-                    loading="lazy"
-                >
-
-                <!-- Before Image (Clipped) -->
+    <div
+        x-data="{
+            position: 50,
+            dragging: false,
+            current: 0,
+            projects: <?php echo esc_attr(wp_json_encode($projects_data)); ?>,
+            get project() {
+                return this.projects[this.current] || this.projects[0];
+            },
+            startDrag(e) {
+                this.dragging = true;
+                e.preventDefault();
+            },
+            onDrag(e) {
+                if (!this.dragging) return;
+                const rect = this.$refs.slider.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const x = clientX - rect.left;
+                this.position = Math.max(0, Math.min(100, (x / rect.width) * 100));
+            },
+            stopDrag() {
+                this.dragging = false;
+            },
+            goTo(index) {
+                this.current = index;
+                this.position = 50;
+            }
+        }"
+        @mousemove.window="onDrag($event)"
+        @mouseup.window="stopDrag()"
+        @touchmove.window="onDrag($event)"
+        @touchend.window="stopDrag()"
+        class="ba-hero-container"
+    >
+        <div x-ref="slider" class="ba-hero-wrapper">
+            <div class="ba-comparison" id="baMainComparison">
                 <div
-                    class="absolute inset-0"
-                    :style="'clip-path: inset(0 ' + (100 - position) + '% 0 0)'"
-                >
-                    <img
-                        :src="project.vorher"
-                        :alt="project.vorherAlt"
-                        class="w-full h-full object-cover"
-                        loading="lazy"
-                    >
-                </div>
-
-                <!-- Labels -->
-                <div class="absolute top-4 left-4 z-10">
-                    <span class="bg-earth-brown/80 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
-                        <?php esc_html_e('Vorher', 'toni-janis'); ?>
-                    </span>
-                </div>
-                <div class="absolute top-4 right-4 z-10">
-                    <span class="bg-kiwi-green/90 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
-                        <?php esc_html_e('Nachher', 'toni-janis'); ?>
-                    </span>
-                </div>
-
-                <!-- Slider Handle -->
+                    class="ba-before"
+                    id="baBeforeImage"
+                    :style="'clip-path: inset(0 ' + (100 - position) + '% 0 0); background-image: url(' + project.vorher + ')'"
+                ></div>
                 <div
-                    class="absolute top-0 bottom-0 z-20 flex items-center"
+                    class="ba-after"
+                    id="baAfterImage"
+                    :style="'background-image: url(' + project.nachher + ')'"
+                ></div>
+                <div
+                    class="ba-slider"
+                    id="baSlider"
                     :style="'left: ' + position + '%'"
                     @mousedown="startDrag($event)"
                     @touchstart="startDrag($event)"
-                >
-                    <!-- Line -->
-                    <div class="absolute top-0 bottom-0 w-0.5 bg-white -translate-x-1/2 shadow-lg"></div>
-
-                    <!-- Handle Button -->
-                    <div class="relative -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center cursor-grab active:cursor-grabbing">
-                        <svg class="w-5 h-5 text-kiwi-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path>
-                        </svg>
-                    </div>
+                    @keydown.left.prevent="position = Math.max(0, position - 2)"
+                    @keydown.right.prevent="position = Math.min(100, position + 2)"
+                    role="slider"
+                    tabindex="0"
+                    aria-label="<?php esc_attr_e('Vergleichsregler: nach links oder rechts ziehen, um Vorher- und Nachher-Bilder zu vergleichen', 'toni-janis'); ?>"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    :aria-valuenow="Math.round(position)"
+                ></div>
+                <div class="ba-labels">
+                    <span class="ba-label"><?php esc_html_e('Vorher', 'toni-janis'); ?></span>
+                    <span class="ba-label"><?php esc_html_e('Nachher', 'toni-janis'); ?></span>
                 </div>
             </div>
+        </div>
 
-            <!-- Project Info -->
-            <div class="mt-6 text-center">
-                <template x-if="project.titel">
-                    <h3 class="font-heading text-xl md:text-2xl font-bold text-earth-brown mb-2" x-text="project.titel"></h3>
-                </template>
+        <div class="ba-hero-info" id="baHeroInfo">
+            <template x-if="project.titel">
+                <h3 id="baProjectTitle" x-text="project.titel"></h3>
+            </template>
 
-                <template x-if="project.beschreibung">
-                    <p class="text-earth-brown/70 mb-3 max-w-xl mx-auto" x-text="project.beschreibung"></p>
-                </template>
+            <template x-if="project.beschreibung">
+                <p id="baProjectDescription" x-text="project.beschreibung"></p>
+            </template>
 
-                <template x-if="project.tags && project.tags.length > 0">
-                    <div class="flex flex-wrap justify-center gap-2">
-                        <template x-for="(tag, idx) in project.tags" :key="idx">
-                            <span
-                                class="inline-block bg-kiwi-green/10 text-kiwi-dark text-xs font-medium px-3 py-1 rounded-full"
-                                x-text="tag"
-                            ></span>
-                        </template>
-                    </div>
-                </template>
-            </div>
+            <template x-if="project.tags && project.tags.length > 0">
+                <div class="ba-tags" id="baProjectTags">
+                    <template x-for="(tag, idx) in project.tags" :key="idx">
+                        <span class="ba-tag" x-text="tag"></span>
+                    </template>
+                </div>
+            </template>
 
-            <!-- Navigation Dots -->
             <?php if ($total > 1) : ?>
-                <div class="flex justify-center gap-3 mt-6">
-                    <?php for ($i = 0; $i < $total; $i++) : ?>
-                        <button
-                            @click="goTo(<?php echo $i; ?>)"
-                            :class="current === <?php echo $i; ?> ? 'bg-kiwi-green scale-125' : 'bg-earth-brown/30 hover:bg-earth-brown/50'"
-                            class="w-3 h-3 rounded-full transition-all duration-300"
-                            aria-label="<?php echo esc_attr(sprintf(__('Projekt %d', 'toni-janis'), $i + 1)); ?>"
-                        ></button>
-                    <?php endfor; ?>
+                <div class="ba-navigation">
+                    <button class="ba-nav-btn" id="baPrev" @click="goTo((current - 1 + projects.length) % projects.length)" aria-label="<?php esc_attr_e('Vorheriges Projekt', 'toni-janis'); ?>">&larr;</button>
+                    <div class="ba-nav-dots" id="baDots">
+                        <?php for ($i = 0; $i < $total; $i++) : ?>
+                            <button
+                                @click="goTo(<?php echo $i; ?>)"
+                                :class="current === <?php echo $i; ?> ? 'active' : ''"
+                                aria-label="<?php echo esc_attr(sprintf(__('Projekt %d', 'toni-janis'), $i + 1)); ?>"
+                            ></button>
+                        <?php endfor; ?>
+                    </div>
+                    <button class="ba-nav-btn" id="baNext" @click="goTo((current + 1) % projects.length)" aria-label="<?php esc_attr_e('Naechstes Projekt', 'toni-janis'); ?>">&rarr;</button>
                 </div>
             <?php endif; ?>
         </div>
